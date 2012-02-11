@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  -->
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:bz="http://www.bugzilla.org/rdf#"
+     xmlns:nc="http://home.netscape.com/NC-rdf#">
+
+<bz:result rdf:about="http://localhost:5080/buglist.cgi?ctype=rdf&amp;product=WorldControl&amp;query_format=advanced">
+  <bz:installation rdf:resource="http://localhost:5080/" />
+  <bz:query_timestamp>2012-02-07 19:56:23 PST</bz:query_timestamp>
+  <bz:bugs>
+    <Seq>
+      <li>
+        <bz:bug rdf:about="http://localhost:5080/show_bug.cgi?id=6155">
+          <bz:id nc:parseType="Integer">6155</bz:id>
+          <bz:product>WorldControl</bz:product>
+          <bz:component>EconomicControl</bz:component>
+          <bz:assigned_to>tara</bz:assigned_to>
+          <bz:bug_status>UNCONFIRMED</bz:bug_status>
+          <bz:resolution></bz:resolution>
+          <bz:short_desc>Test bug attachment</bz:short_desc>
+          <bz:changeddate>2011-07-02</bz:changeddate>
+        </bz:bug>
+      </li>
+    </Seq>
+  </bz:bugs>
+</bz:result>
+</RDF>

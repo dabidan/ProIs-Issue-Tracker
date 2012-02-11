@@ -1,0 +1,1210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Note: this interface is experimental and under development.
+   - We may and probably will make breaking changes to it in the future. -->
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:bz="http://www.bugzilla.org/rdf#">
+
+<bz:installation rdf:about="http://localhost:5080/">
+  <bz:install_version>4.3</bz:install_version>
+  <bz:maintainer>webmaster&#64;bugzilla.org</bz:maintainer>
+
+  <bz:status>
+    <Seq>
+
+        <li>UNCONFIRMED</li>
+        <li>CONFIRMED</li>
+        <li>IN_PROGRESS</li>
+        <li>RESOLVED</li>
+        <li>VERIFIED</li>
+    </Seq>
+
+  </bz:status>
+
+  <bz:status_open>
+    <Seq>
+        <li>UNCONFIRMED</li>
+        <li>CONFIRMED</li>
+        <li>IN_PROGRESS</li>
+    </Seq>
+
+  </bz:status_open>
+
+  <bz:status_closed>
+    <Seq>
+        <li>RESOLVED</li>
+        <li>VERIFIED</li>
+    </Seq>
+  </bz:status_closed>
+
+  <bz:resolution>
+    <Seq>
+        <li></li>
+        <li>FIXED</li>
+        <li>INVALID</li>
+        <li>WONTFIX</li>
+        <li>DUPLICATE</li>
+
+        <li>WORKSFORME</li>
+        <li>MOVED</li>
+    </Seq>
+  </bz:resolution>
+
+  <bz:keyword>
+    <Seq>
+        <li>funny</li>
+
+        <li>KeyMe</li>
+        <li>KeyMe+</li>
+        <li>KeyMe-</li>
+        <li>stupid</li>
+    </Seq>
+  </bz:keyword>
+
+  <bz:platform>
+    <Seq>
+        <li>All</li>
+        <li>DEC</li>
+        <li>HP</li>
+        <li>Macintosh</li>
+        <li>PC</li>
+
+        <li>SGI</li>
+        <li>Sun</li>
+        <li>Other</li>
+    </Seq>
+  </bz:platform>
+
+  <bz:op_sys>
+    <Seq>
+
+        <li>All</li>
+        <li>Windows 3.1</li>
+        <li>Windows 95</li>
+        <li>Windows 98</li>
+        <li>Windows ME</li>
+        <li>Windows 2000</li>
+
+        <li>Windows NT</li>
+        <li>Windows XP</li>
+        <li>Windows Server 2003</li>
+        <li>Mac System 7</li>
+        <li>Mac System 7.5</li>
+        <li>Mac System 7.6.1</li>
+
+        <li>Mac System 8.0</li>
+        <li>Mac System 8.5</li>
+        <li>Mac System 8.6</li>
+        <li>Mac System 9.x</li>
+        <li>Mac OS X 10.0</li>
+        <li>Mac OS X 10.1</li>
+
+        <li>Mac OS X 10.2</li>
+        <li>Linux</li>
+        <li>BSD/OS</li>
+        <li>FreeBSD</li>
+        <li>NetBSD</li>
+        <li>OpenBSD</li>
+
+        <li>AIX</li>
+        <li>BeOS</li>
+        <li>HP-UX</li>
+        <li>IRIX</li>
+        <li>Neutrino</li>
+        <li>OpenVMS</li>
+
+        <li>OS/2</li>
+        <li>OSF/1</li>
+        <li>Solaris</li>
+        <li>SunOS</li>
+        <li>MáçØß</li>
+        <li>Other</li>
+
+    </Seq>
+  </bz:op_sys>
+
+  <bz:priority>
+    <Seq>
+        <li>P1</li>
+        <li>P2</li>
+        <li>P3</li>
+
+        <li>P4</li>
+        <li>P5</li>
+    </Seq>
+  </bz:priority>
+
+  <bz:severity>
+    <Seq>
+        <li>blocker</li>
+
+        <li>critical</li>
+        <li>major</li>
+        <li>normal</li>
+        <li>minor</li>
+        <li>trivial</li>
+        <li>enhancement</li>
+
+    </Seq>
+  </bz:severity>
+
+
+  <bz:products>
+    <Seq>
+        <li>
+          <bz:product rdf:about="http://localhost:5080/product.cgi?name=FoodReplicator">
+            <bz:name>FoodReplicator</bz:name>
+
+            <bz:allows_unconfirmed>1</bz:allows_unconfirmed>
+
+            <bz:components>
+              <Seq>
+                  <li resource="http://localhost:5080/component.cgi?name=renamed%20component&amp;product=FoodReplicator"/>
+                  <li resource="http://localhost:5080/component.cgi?name=Salt&amp;product=FoodReplicator"/>
+                  <li resource="http://localhost:5080/component.cgi?name=Salt%20II&amp;product=FoodReplicator"/>
+                  <li resource="http://localhost:5080/component.cgi?name=SaltSprinkler&amp;product=FoodReplicator"/>
+                  <li resource="http://localhost:5080/component.cgi?name=SpiceDispenser&amp;product=FoodReplicator"/>
+
+                  <li resource="http://localhost:5080/component.cgi?name=VoiceInterface&amp;product=FoodReplicator"/>
+              </Seq>
+            </bz:components>
+
+            <bz:versions>
+              <Seq>
+                  <li resource="http://localhost:5080/version.cgi?name=1.0"/>
+              </Seq>
+            </bz:versions>
+
+              <bz:target_milestones>
+                <Seq>
+                    <li resource="http://localhost:5080/milestone.cgi?name=---"/>
+                    <li resource="http://localhost:5080/milestone.cgi?name=M1"/>
+                </Seq>
+              </bz:target_milestones>
+
+          </bz:product>
+        </li>
+
+        <li>
+          <bz:product rdf:about="http://localhost:5080/product.cgi?name=MyOwnBadSelf">
+            <bz:name>MyOwnBadSelf</bz:name>
+            <bz:allows_unconfirmed>0</bz:allows_unconfirmed>
+
+            <bz:components>
+              <Seq>
+                  <li resource="http://localhost:5080/component.cgi?name=Comp1&amp;product=MyOwnBadSelf"/>
+
+                  <li resource="http://localhost:5080/component.cgi?name=comp2&amp;product=MyOwnBadSelf"/>
+              </Seq>
+            </bz:components>
+
+            <bz:versions>
+              <Seq>
+                  <li resource="http://localhost:5080/version.cgi?name=unspecified"/>
+              </Seq>
+            </bz:versions>
+
+              <bz:target_milestones>
+                <Seq>
+                    <li resource="http://localhost:5080/milestone.cgi?name=---"/>
+                </Seq>
+              </bz:target_milestones>
+
+          </bz:product>
+        </li>
+        <li>
+
+          <bz:product rdf:about="http://localhost:5080/product.cgi?name=Sam's%20Widget">
+            <bz:name>Sam's Widget</bz:name>
+            <bz:allows_unconfirmed>0</bz:allows_unconfirmed>
+
+            <bz:components>
+              <Seq>
+                  <li resource="http://localhost:5080/component.cgi?name=Widget%20Gears&amp;product=Sam's%20Widget"/>
+              </Seq>
+
+            </bz:components>
+
+            <bz:versions>
+              <Seq>
+                  <li resource="http://localhost:5080/version.cgi?name=unspecified"/>
+              </Seq>
+            </bz:versions>
+
+              <bz:target_milestones>
+                <Seq>
+
+                    <li resource="http://localhost:5080/milestone.cgi?name=---"/>
+                </Seq>
+              </bz:target_milestones>
+
+          </bz:product>
+        </li>
+        <li>
+          <bz:product rdf:about="http://localhost:5080/product.cgi?name=WorldControl">
+            <bz:name>WorldControl</bz:name>
+
+            <bz:allows_unconfirmed>0</bz:allows_unconfirmed>
+
+            <bz:components>
+              <Seq>
+                  <li resource="http://localhost:5080/component.cgi?name=EconomicControl&amp;product=WorldControl"/>
+                  <li resource="http://localhost:5080/component.cgi?name=PoliticalBackStabbing&amp;product=WorldControl"/>
+                  <li resource="http://localhost:5080/component.cgi?name=WeatherControl&amp;product=WorldControl"/>
+              </Seq>
+            </bz:components>
+
+            <bz:versions>
+              <Seq>
+                  <li resource="http://localhost:5080/version.cgi?name=1.0"/>
+              </Seq>
+            </bz:versions>
+
+              <bz:target_milestones>
+                <Seq>
+                    <li resource="http://localhost:5080/milestone.cgi?name=---"/>
+
+                    <li resource="http://localhost:5080/milestone.cgi?name=World%202.0"/>
+                </Seq>
+              </bz:target_milestones>
+
+          </bz:product>
+        </li>
+        <li>
+          <bz:product rdf:about="http://localhost:5080/product.cgi?name=%D0%85p%D1%97d%D1%94r%20S%C3%A9%C3%A7ret%C3%AD%C3%B8ns">
+            <bz:name>Ѕpїdєr Séçretíøns</bz:name>
+
+            <bz:allows_unconfirmed>0</bz:allows_unconfirmed>
+
+            <bz:components>
+              <Seq>
+                  <li resource="http://localhost:5080/component.cgi?name=Digestive%20Goo&amp;product=%D0%85p%D1%97d%D1%94r%20S%C3%A9%C3%A7ret%C3%AD%C3%B8ns"/>
+                  <li resource="http://localhost:5080/component.cgi?name=Venom&amp;product=%D0%85p%D1%97d%D1%94r%20S%C3%A9%C3%A7ret%C3%AD%C3%B8ns"/>
+                  <li resource="http://localhost:5080/component.cgi?name=Web&amp;product=%D0%85p%D1%97d%D1%94r%20S%C3%A9%C3%A7ret%C3%AD%C3%B8ns"/>
+              </Seq>
+            </bz:components>
+
+            <bz:versions>
+              <Seq>
+                  <li resource="http://localhost:5080/version.cgi?name=unspecified"/>
+              </Seq>
+            </bz:versions>
+
+              <bz:target_milestones>
+                <Seq>
+                    <li resource="http://localhost:5080/milestone.cgi?name=---"/>
+
+                </Seq>
+              </bz:target_milestones>
+
+          </bz:product>
+        </li>
+    </Seq>
+  </bz:products>
+
+  <bz:components>
+    <Seq>
+
+          <li>
+            <bz:component rdf:about="http://localhost:5080/component.cgi?name=renamed%20component&amp;product=FoodReplicator">
+              <bz:name>renamed component</bz:name>
+                <bz:flag_types>
+                  <Seq>
+                      <li resource="http://localhost:5080/flag.cgi?id=8&amp;name=another-flag" />
+                      <li resource="http://localhost:5080/flag.cgi?id=9&amp;name=another-flag2" />
+                      <li resource="http://localhost:5080/flag.cgi?id=11&amp;name=blocker" />
+
+                      <li resource="http://localhost:5080/flag.cgi?id=5&amp;name=foo" />
+                      <li resource="http://localhost:5080/flag.cgi?id=10&amp;name=regression" />
+                      <li resource="http://localhost:5080/flag.cgi?id=6&amp;name=test" />
+                      <li resource="http://localhost:5080/flag.cgi?id=12&amp;name=maybe" />
+                      <li resource="http://localhost:5080/flag.cgi?id=4&amp;name=approval1.4.x" />
+                      <li resource="http://localhost:5080/flag.cgi?id=1&amp;name=review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=2&amp;name=super-review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=3&amp;name=approval" />
+                  </Seq>
+
+                </bz:flag_types>
+            </bz:component>
+          </li>
+          <li>
+            <bz:component rdf:about="http://localhost:5080/component.cgi?name=Salt&amp;product=FoodReplicator">
+              <bz:name>Salt</bz:name>
+                <bz:flag_types>
+                  <Seq>
+
+                      <li resource="http://localhost:5080/flag.cgi?id=8&amp;name=another-flag" />
+                      <li resource="http://localhost:5080/flag.cgi?id=9&amp;name=another-flag2" />
+                      <li resource="http://localhost:5080/flag.cgi?id=11&amp;name=blocker" />
+                      <li resource="http://localhost:5080/flag.cgi?id=5&amp;name=foo" />
+                      <li resource="http://localhost:5080/flag.cgi?id=10&amp;name=regression" />
+                      <li resource="http://localhost:5080/flag.cgi?id=6&amp;name=test" />
+                      <li resource="http://localhost:5080/flag.cgi?id=12&amp;name=maybe" />
+                      <li resource="http://localhost:5080/flag.cgi?id=4&amp;name=approval1.4.x" />
+                      <li resource="http://localhost:5080/flag.cgi?id=1&amp;name=review" />
+
+                      <li resource="http://localhost:5080/flag.cgi?id=2&amp;name=super-review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=3&amp;name=approval" />
+                  </Seq>
+                </bz:flag_types>
+            </bz:component>
+          </li>
+          <li>
+            <bz:component rdf:about="http://localhost:5080/component.cgi?name=Salt%20II&amp;product=FoodReplicator">
+              <bz:name>Salt II</bz:name>
+
+                <bz:flag_types>
+                  <Seq>
+                      <li resource="http://localhost:5080/flag.cgi?id=8&amp;name=another-flag" />
+                      <li resource="http://localhost:5080/flag.cgi?id=9&amp;name=another-flag2" />
+                      <li resource="http://localhost:5080/flag.cgi?id=11&amp;name=blocker" />
+                      <li resource="http://localhost:5080/flag.cgi?id=5&amp;name=foo" />
+                      <li resource="http://localhost:5080/flag.cgi?id=10&amp;name=regression" />
+                      <li resource="http://localhost:5080/flag.cgi?id=6&amp;name=test" />
+                      <li resource="http://localhost:5080/flag.cgi?id=12&amp;name=maybe" />
+
+                      <li resource="http://localhost:5080/flag.cgi?id=4&amp;name=approval1.4.x" />
+                      <li resource="http://localhost:5080/flag.cgi?id=1&amp;name=review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=2&amp;name=super-review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=3&amp;name=approval" />
+                  </Seq>
+                </bz:flag_types>
+            </bz:component>
+          </li>
+          <li>
+
+            <bz:component rdf:about="http://localhost:5080/component.cgi?name=SaltSprinkler&amp;product=FoodReplicator">
+              <bz:name>SaltSprinkler</bz:name>
+                <bz:flag_types>
+                  <Seq>
+                      <li resource="http://localhost:5080/flag.cgi?id=8&amp;name=another-flag" />
+                      <li resource="http://localhost:5080/flag.cgi?id=9&amp;name=another-flag2" />
+                      <li resource="http://localhost:5080/flag.cgi?id=11&amp;name=blocker" />
+                      <li resource="http://localhost:5080/flag.cgi?id=5&amp;name=foo" />
+
+                      <li resource="http://localhost:5080/flag.cgi?id=10&amp;name=regression" />
+                      <li resource="http://localhost:5080/flag.cgi?id=6&amp;name=test" />
+                      <li resource="http://localhost:5080/flag.cgi?id=12&amp;name=maybe" />
+                      <li resource="http://localhost:5080/flag.cgi?id=4&amp;name=approval1.4.x" />
+                      <li resource="http://localhost:5080/flag.cgi?id=1&amp;name=review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=2&amp;name=super-review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=3&amp;name=approval" />
+                  </Seq>
+                </bz:flag_types>
+
+            </bz:component>
+          </li>
+          <li>
+            <bz:component rdf:about="http://localhost:5080/component.cgi?name=SpiceDispenser&amp;product=FoodReplicator">
+              <bz:name>SpiceDispenser</bz:name>
+                <bz:flag_types>
+                  <Seq>
+                      <li resource="http://localhost:5080/flag.cgi?id=8&amp;name=another-flag" />
+
+                      <li resource="http://localhost:5080/flag.cgi?id=9&amp;name=another-flag2" />
+                      <li resource="http://localhost:5080/flag.cgi?id=11&amp;name=blocker" />
+                      <li resource="http://localhost:5080/flag.cgi?id=5&amp;name=foo" />
+                      <li resource="http://localhost:5080/flag.cgi?id=10&amp;name=regression" />
+                      <li resource="http://localhost:5080/flag.cgi?id=6&amp;name=test" />
+                      <li resource="http://localhost:5080/flag.cgi?id=12&amp;name=maybe" />
+                      <li resource="http://localhost:5080/flag.cgi?id=4&amp;name=approval1.4.x" />
+                      <li resource="http://localhost:5080/flag.cgi?id=1&amp;name=review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=2&amp;name=super-review" />
+
+                      <li resource="http://localhost:5080/flag.cgi?id=3&amp;name=approval" />
+                  </Seq>
+                </bz:flag_types>
+            </bz:component>
+          </li>
+          <li>
+            <bz:component rdf:about="http://localhost:5080/component.cgi?name=VoiceInterface&amp;product=FoodReplicator">
+              <bz:name>VoiceInterface</bz:name>
+
+                <bz:flag_types>
+                  <Seq>
+                      <li resource="http://localhost:5080/flag.cgi?id=8&amp;name=another-flag" />
+                      <li resource="http://localhost:5080/flag.cgi?id=9&amp;name=another-flag2" />
+                      <li resource="http://localhost:5080/flag.cgi?id=11&amp;name=blocker" />
+                      <li resource="http://localhost:5080/flag.cgi?id=5&amp;name=foo" />
+                      <li resource="http://localhost:5080/flag.cgi?id=10&amp;name=regression" />
+                      <li resource="http://localhost:5080/flag.cgi?id=6&amp;name=test" />
+                      <li resource="http://localhost:5080/flag.cgi?id=12&amp;name=maybe" />
+
+                      <li resource="http://localhost:5080/flag.cgi?id=4&amp;name=approval1.4.x" />
+                      <li resource="http://localhost:5080/flag.cgi?id=1&amp;name=review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=2&amp;name=super-review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=3&amp;name=approval" />
+                  </Seq>
+                </bz:flag_types>
+            </bz:component>
+          </li>
+          <li>
+
+            <bz:component rdf:about="http://localhost:5080/component.cgi?name=Comp1&amp;product=MyOwnBadSelf">
+              <bz:name>Comp1</bz:name>
+                <bz:flag_types>
+                  <Seq>
+                      <li resource="http://localhost:5080/flag.cgi?id=8&amp;name=another-flag" />
+                      <li resource="http://localhost:5080/flag.cgi?id=9&amp;name=another-flag2" />
+                      <li resource="http://localhost:5080/flag.cgi?id=11&amp;name=blocker" />
+                      <li resource="http://localhost:5080/flag.cgi?id=10&amp;name=regression" />
+
+                      <li resource="http://localhost:5080/flag.cgi?id=6&amp;name=test" />
+                      <li resource="http://localhost:5080/flag.cgi?id=12&amp;name=maybe" />
+                      <li resource="http://localhost:5080/flag.cgi?id=4&amp;name=approval1.4.x" />
+                      <li resource="http://localhost:5080/flag.cgi?id=1&amp;name=review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=2&amp;name=super-review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=3&amp;name=approval" />
+                  </Seq>
+                </bz:flag_types>
+            </bz:component>
+
+          </li>
+          <li>
+            <bz:component rdf:about="http://localhost:5080/component.cgi?name=comp2&amp;product=MyOwnBadSelf">
+              <bz:name>comp2</bz:name>
+                <bz:flag_types>
+                  <Seq>
+                      <li resource="http://localhost:5080/flag.cgi?id=8&amp;name=another-flag" />
+                      <li resource="http://localhost:5080/flag.cgi?id=9&amp;name=another-flag2" />
+
+                      <li resource="http://localhost:5080/flag.cgi?id=11&amp;name=blocker" />
+                      <li resource="http://localhost:5080/flag.cgi?id=10&amp;name=regression" />
+                      <li resource="http://localhost:5080/flag.cgi?id=6&amp;name=test" />
+                      <li resource="http://localhost:5080/flag.cgi?id=12&amp;name=maybe" />
+                      <li resource="http://localhost:5080/flag.cgi?id=4&amp;name=approval1.4.x" />
+                      <li resource="http://localhost:5080/flag.cgi?id=1&amp;name=review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=2&amp;name=super-review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=3&amp;name=approval" />
+                  </Seq>
+
+                </bz:flag_types>
+            </bz:component>
+          </li>
+          <li>
+            <bz:component rdf:about="http://localhost:5080/component.cgi?name=Widget%20Gears&amp;product=Sam's%20Widget">
+              <bz:name>Widget Gears</bz:name>
+                <bz:flag_types>
+                  <Seq>
+
+                      <li resource="http://localhost:5080/flag.cgi?id=8&amp;name=another-flag" />
+                      <li resource="http://localhost:5080/flag.cgi?id=9&amp;name=another-flag2" />
+                      <li resource="http://localhost:5080/flag.cgi?id=11&amp;name=blocker" />
+                      <li resource="http://localhost:5080/flag.cgi?id=10&amp;name=regression" />
+                      <li resource="http://localhost:5080/flag.cgi?id=6&amp;name=test" />
+                      <li resource="http://localhost:5080/flag.cgi?id=12&amp;name=maybe" />
+                      <li resource="http://localhost:5080/flag.cgi?id=4&amp;name=approval1.4.x" />
+                      <li resource="http://localhost:5080/flag.cgi?id=1&amp;name=review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=2&amp;name=super-review" />
+
+                      <li resource="http://localhost:5080/flag.cgi?id=3&amp;name=approval" />
+                  </Seq>
+                </bz:flag_types>
+            </bz:component>
+          </li>
+          <li>
+            <bz:component rdf:about="http://localhost:5080/component.cgi?name=EconomicControl&amp;product=WorldControl">
+              <bz:name>EconomicControl</bz:name>
+
+                <bz:flag_types>
+                  <Seq>
+                      <li resource="http://localhost:5080/flag.cgi?id=8&amp;name=another-flag" />
+                      <li resource="http://localhost:5080/flag.cgi?id=9&amp;name=another-flag2" />
+                      <li resource="http://localhost:5080/flag.cgi?id=11&amp;name=blocker" />
+                      <li resource="http://localhost:5080/flag.cgi?id=5&amp;name=foo" />
+                      <li resource="http://localhost:5080/flag.cgi?id=10&amp;name=regression" />
+                      <li resource="http://localhost:5080/flag.cgi?id=6&amp;name=test" />
+                      <li resource="http://localhost:5080/flag.cgi?id=12&amp;name=maybe" />
+
+                      <li resource="http://localhost:5080/flag.cgi?id=4&amp;name=approval1.4.x" />
+                      <li resource="http://localhost:5080/flag.cgi?id=1&amp;name=review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=2&amp;name=super-review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=3&amp;name=approval" />
+                  </Seq>
+                </bz:flag_types>
+            </bz:component>
+          </li>
+          <li>
+
+            <bz:component rdf:about="http://localhost:5080/component.cgi?name=PoliticalBackStabbing&amp;product=WorldControl">
+              <bz:name>PoliticalBackStabbing</bz:name>
+                <bz:flag_types>
+                  <Seq>
+                      <li resource="http://localhost:5080/flag.cgi?id=8&amp;name=another-flag" />
+                      <li resource="http://localhost:5080/flag.cgi?id=9&amp;name=another-flag2" />
+                      <li resource="http://localhost:5080/flag.cgi?id=11&amp;name=blocker" />
+                      <li resource="http://localhost:5080/flag.cgi?id=5&amp;name=foo" />
+
+                      <li resource="http://localhost:5080/flag.cgi?id=10&amp;name=regression" />
+                      <li resource="http://localhost:5080/flag.cgi?id=6&amp;name=test" />
+                      <li resource="http://localhost:5080/flag.cgi?id=12&amp;name=maybe" />
+                      <li resource="http://localhost:5080/flag.cgi?id=4&amp;name=approval1.4.x" />
+                      <li resource="http://localhost:5080/flag.cgi?id=1&amp;name=review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=2&amp;name=super-review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=3&amp;name=approval" />
+                  </Seq>
+                </bz:flag_types>
+
+            </bz:component>
+          </li>
+          <li>
+            <bz:component rdf:about="http://localhost:5080/component.cgi?name=WeatherControl&amp;product=WorldControl">
+              <bz:name>WeatherControl</bz:name>
+                <bz:flag_types>
+                  <Seq>
+                      <li resource="http://localhost:5080/flag.cgi?id=8&amp;name=another-flag" />
+
+                      <li resource="http://localhost:5080/flag.cgi?id=9&amp;name=another-flag2" />
+                      <li resource="http://localhost:5080/flag.cgi?id=11&amp;name=blocker" />
+                      <li resource="http://localhost:5080/flag.cgi?id=5&amp;name=foo" />
+                      <li resource="http://localhost:5080/flag.cgi?id=10&amp;name=regression" />
+                      <li resource="http://localhost:5080/flag.cgi?id=6&amp;name=test" />
+                      <li resource="http://localhost:5080/flag.cgi?id=12&amp;name=maybe" />
+                      <li resource="http://localhost:5080/flag.cgi?id=4&amp;name=approval1.4.x" />
+                      <li resource="http://localhost:5080/flag.cgi?id=1&amp;name=review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=2&amp;name=super-review" />
+
+                      <li resource="http://localhost:5080/flag.cgi?id=3&amp;name=approval" />
+                  </Seq>
+                </bz:flag_types>
+            </bz:component>
+          </li>
+          <li>
+            <bz:component rdf:about="http://localhost:5080/component.cgi?name=Digestive%20Goo&amp;product=%D0%85p%D1%97d%D1%94r%20S%C3%A9%C3%A7ret%C3%AD%C3%B8ns">
+              <bz:name>Digestive Goo</bz:name>
+
+                <bz:flag_types>
+                  <Seq>
+                      <li resource="http://localhost:5080/flag.cgi?id=8&amp;name=another-flag" />
+                      <li resource="http://localhost:5080/flag.cgi?id=9&amp;name=another-flag2" />
+                      <li resource="http://localhost:5080/flag.cgi?id=11&amp;name=blocker" />
+                      <li resource="http://localhost:5080/flag.cgi?id=10&amp;name=regression" />
+                      <li resource="http://localhost:5080/flag.cgi?id=6&amp;name=test" />
+                      <li resource="http://localhost:5080/flag.cgi?id=12&amp;name=maybe" />
+                      <li resource="http://localhost:5080/flag.cgi?id=4&amp;name=approval1.4.x" />
+
+                      <li resource="http://localhost:5080/flag.cgi?id=1&amp;name=review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=2&amp;name=super-review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=3&amp;name=approval" />
+                  </Seq>
+                </bz:flag_types>
+            </bz:component>
+          </li>
+          <li>
+            <bz:component rdf:about="http://localhost:5080/component.cgi?name=Venom&amp;product=%D0%85p%D1%97d%D1%94r%20S%C3%A9%C3%A7ret%C3%AD%C3%B8ns">
+
+              <bz:name>Venom</bz:name>
+                <bz:flag_types>
+                  <Seq>
+                      <li resource="http://localhost:5080/flag.cgi?id=8&amp;name=another-flag" />
+                      <li resource="http://localhost:5080/flag.cgi?id=9&amp;name=another-flag2" />
+                      <li resource="http://localhost:5080/flag.cgi?id=11&amp;name=blocker" />
+                      <li resource="http://localhost:5080/flag.cgi?id=10&amp;name=regression" />
+                      <li resource="http://localhost:5080/flag.cgi?id=6&amp;name=test" />
+
+                      <li resource="http://localhost:5080/flag.cgi?id=12&amp;name=maybe" />
+                      <li resource="http://localhost:5080/flag.cgi?id=4&amp;name=approval1.4.x" />
+                      <li resource="http://localhost:5080/flag.cgi?id=1&amp;name=review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=2&amp;name=super-review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=3&amp;name=approval" />
+                  </Seq>
+                </bz:flag_types>
+            </bz:component>
+          </li>
+
+          <li>
+            <bz:component rdf:about="http://localhost:5080/component.cgi?name=Web&amp;product=%D0%85p%D1%97d%D1%94r%20S%C3%A9%C3%A7ret%C3%AD%C3%B8ns">
+              <bz:name>Web</bz:name>
+                <bz:flag_types>
+                  <Seq>
+                      <li resource="http://localhost:5080/flag.cgi?id=8&amp;name=another-flag" />
+                      <li resource="http://localhost:5080/flag.cgi?id=9&amp;name=another-flag2" />
+                      <li resource="http://localhost:5080/flag.cgi?id=11&amp;name=blocker" />
+
+                      <li resource="http://localhost:5080/flag.cgi?id=10&amp;name=regression" />
+                      <li resource="http://localhost:5080/flag.cgi?id=6&amp;name=test" />
+                      <li resource="http://localhost:5080/flag.cgi?id=12&amp;name=maybe" />
+                      <li resource="http://localhost:5080/flag.cgi?id=4&amp;name=approval1.4.x" />
+                      <li resource="http://localhost:5080/flag.cgi?id=1&amp;name=review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=2&amp;name=super-review" />
+                      <li resource="http://localhost:5080/flag.cgi?id=3&amp;name=approval" />
+                  </Seq>
+                </bz:flag_types>
+
+            </bz:component>
+          </li>
+    </Seq>
+  </bz:components>
+
+  <bz:versions>
+    <Seq>
+          <li>
+            <bz:version rdf:about="http://localhost:5080/version.cgi?name=1.0">
+
+              <bz:name>1.0</bz:name>
+            </bz:version>
+          </li>
+          <li>
+            <bz:version rdf:about="http://localhost:5080/version.cgi?name=unspecified">
+              <bz:name>unspecified</bz:name>
+            </bz:version>
+          </li>
+
+          <li>
+            <bz:version rdf:about="http://localhost:5080/version.cgi?name=unspecified">
+              <bz:name>unspecified</bz:name>
+            </bz:version>
+          </li>
+          <li>
+            <bz:version rdf:about="http://localhost:5080/version.cgi?name=1.0">
+              <bz:name>1.0</bz:name>
+
+            </bz:version>
+          </li>
+          <li>
+            <bz:version rdf:about="http://localhost:5080/version.cgi?name=unspecified">
+              <bz:name>unspecified</bz:name>
+            </bz:version>
+          </li>
+    </Seq>
+
+  </bz:versions>
+
+    <bz:target_milestones>
+      <Seq>
+            <li>
+              <bz:target_milestone rdf:about="http://localhost:5080/milestone.cgi?name=---">
+                <bz:name>---</bz:name>
+              </bz:target_milestone>
+            </li>
+
+            <li>
+              <bz:target_milestone rdf:about="http://localhost:5080/milestone.cgi?name=M1">
+                <bz:name>M1</bz:name>
+              </bz:target_milestone>
+            </li>
+            <li>
+              <bz:target_milestone rdf:about="http://localhost:5080/milestone.cgi?name=---">
+                <bz:name>---</bz:name>
+
+              </bz:target_milestone>
+            </li>
+            <li>
+              <bz:target_milestone rdf:about="http://localhost:5080/milestone.cgi?name=---">
+                <bz:name>---</bz:name>
+              </bz:target_milestone>
+            </li>
+            <li>
+
+              <bz:target_milestone rdf:about="http://localhost:5080/milestone.cgi?name=---">
+                <bz:name>---</bz:name>
+              </bz:target_milestone>
+            </li>
+            <li>
+              <bz:target_milestone rdf:about="http://localhost:5080/milestone.cgi?name=World%202.0">
+                <bz:name>World 2.0</bz:name>
+              </bz:target_milestone>
+
+            </li>
+            <li>
+              <bz:target_milestone rdf:about="http://localhost:5080/milestone.cgi?name=---">
+                <bz:name>---</bz:name>
+              </bz:target_milestone>
+            </li>
+      </Seq>
+    </bz:target_milestones>
+
+    <bz:flag_types>
+      <Seq>
+          <li>
+            <bz:flag_type rdf:about="http://localhost:5080/flag.cgi?id=8&amp;name=another-flag">
+              <bz:id>8</bz:id>
+              <bz:name>another-flag</bz:name>
+              <bz:description>Another flag</bz:description>
+
+              <bz:type>bug</bz:type>
+              <bz:requestable>1</bz:requestable>
+              <bz:specifically_requestable>1</bz:specifically_requestable>
+              <bz:multiplicable>1</bz:multiplicable>
+            </bz:flag_type>
+          </li>
+          <li>
+
+            <bz:flag_type rdf:about="http://localhost:5080/flag.cgi?id=9&amp;name=another-flag2">
+              <bz:id>9</bz:id>
+              <bz:name>another-flag2</bz:name>
+              <bz:description>Another flag</bz:description>
+              <bz:type>bug</bz:type>
+              <bz:requestable>1</bz:requestable>
+
+              <bz:specifically_requestable>1</bz:specifically_requestable>
+              <bz:multiplicable>1</bz:multiplicable>
+            </bz:flag_type>
+          </li>
+          <li>
+            <bz:flag_type rdf:about="http://localhost:5080/flag.cgi?id=3&amp;name=approval">
+              <bz:id>3</bz:id>
+
+              <bz:name>approval</bz:name>
+              <bz:description>Approve the patch for check-in to the tree.</bz:description>
+              <bz:type>attachment</bz:type>
+              <bz:requestable>1</bz:requestable>
+              <bz:specifically_requestable>0</bz:specifically_requestable>
+              <bz:multiplicable>0</bz:multiplicable>
+
+            </bz:flag_type>
+          </li>
+          <li>
+            <bz:flag_type rdf:about="http://localhost:5080/flag.cgi?id=4&amp;name=approval1.4.x">
+              <bz:id>4</bz:id>
+              <bz:name>approval1.4.x</bz:name>
+              <bz:description>Approval for Mozilla 1.4.x</bz:description>
+
+              <bz:type>attachment</bz:type>
+              <bz:requestable>1</bz:requestable>
+              <bz:specifically_requestable>1</bz:specifically_requestable>
+              <bz:multiplicable>1</bz:multiplicable>
+            </bz:flag_type>
+          </li>
+          <li>
+
+            <bz:flag_type rdf:about="http://localhost:5080/flag.cgi?id=11&amp;name=blocker">
+              <bz:id>11</bz:id>
+              <bz:name>blocker</bz:name>
+              <bz:description>Blocks the next release</bz:description>
+              <bz:type>bug</bz:type>
+              <bz:requestable>1</bz:requestable>
+
+              <bz:specifically_requestable>0</bz:specifically_requestable>
+              <bz:multiplicable>0</bz:multiplicable>
+            </bz:flag_type>
+          </li>
+          <li>
+            <bz:flag_type rdf:about="http://localhost:5080/flag.cgi?id=5&amp;name=foo">
+              <bz:id>5</bz:id>
+
+              <bz:name>foo</bz:name>
+              <bz:description>request a foo?</bz:description>
+              <bz:type>bug</bz:type>
+              <bz:requestable>1</bz:requestable>
+              <bz:specifically_requestable>1</bz:specifically_requestable>
+              <bz:multiplicable>1</bz:multiplicable>
+
+            </bz:flag_type>
+          </li>
+          <li>
+            <bz:flag_type rdf:about="http://localhost:5080/flag.cgi?id=12&amp;name=maybe">
+              <bz:id>12</bz:id>
+              <bz:name>maybe</bz:name>
+              <bz:description>maybe yes, maybe no</bz:description>
+
+              <bz:type>bug</bz:type>
+              <bz:requestable>1</bz:requestable>
+              <bz:specifically_requestable>0</bz:specifically_requestable>
+              <bz:multiplicable>0</bz:multiplicable>
+            </bz:flag_type>
+          </li>
+          <li>
+
+            <bz:flag_type rdf:about="http://localhost:5080/flag.cgi?id=10&amp;name=regression">
+              <bz:id>10</bz:id>
+              <bz:name>regression</bz:name>
+              <bz:description>Regression found?</bz:description>
+              <bz:type>bug</bz:type>
+              <bz:requestable>1</bz:requestable>
+
+              <bz:specifically_requestable>0</bz:specifically_requestable>
+              <bz:multiplicable>0</bz:multiplicable>
+            </bz:flag_type>
+          </li>
+          <li>
+            <bz:flag_type rdf:about="http://localhost:5080/flag.cgi?id=1&amp;name=review">
+              <bz:id>1</bz:id>
+
+              <bz:name>review</bz:name>
+              <bz:description>Review the patch for correctness and applicability to the problem.</bz:description>
+              <bz:type>attachment</bz:type>
+              <bz:requestable>1</bz:requestable>
+              <bz:specifically_requestable>1</bz:specifically_requestable>
+              <bz:multiplicable>1</bz:multiplicable>
+
+            </bz:flag_type>
+          </li>
+          <li>
+            <bz:flag_type rdf:about="http://localhost:5080/flag.cgi?id=2&amp;name=super-review">
+              <bz:id>2</bz:id>
+              <bz:name>super-review</bz:name>
+              <bz:description>Review the patch for conformance to general coding practices.</bz:description>
+
+              <bz:type>attachment</bz:type>
+              <bz:requestable>1</bz:requestable>
+              <bz:specifically_requestable>1</bz:specifically_requestable>
+              <bz:multiplicable>0</bz:multiplicable>
+            </bz:flag_type>
+          </li>
+          <li>
+
+            <bz:flag_type rdf:about="http://localhost:5080/flag.cgi?id=6&amp;name=test">
+              <bz:id>6</bz:id>
+              <bz:name>test</bz:name>
+              <bz:description>Ask for testing on this bug</bz:description>
+              <bz:type>bug</bz:type>
+              <bz:requestable>1</bz:requestable>
+
+              <bz:specifically_requestable>1</bz:specifically_requestable>
+              <bz:multiplicable>1</bz:multiplicable>
+            </bz:flag_type>
+          </li>
+      </Seq>
+    </bz:flag_types>
+
+  <bz:fields>
+
+    <Seq>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=bug_id">
+            <bz:name>bug_id</bz:name>
+            <bz:description>Bug ID</bz:description>
+          </bz:field>
+        </li>
+        <li>
+
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=short_desc">
+            <bz:name>short_desc</bz:name>
+            <bz:description>Summary</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=classification">
+            <bz:name>classification</bz:name>
+
+            <bz:description>Classification</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=product">
+            <bz:name>product</bz:name>
+            <bz:description>Product</bz:description>
+
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=version">
+            <bz:name>version</bz:name>
+            <bz:description>Version</bz:description>
+          </bz:field>
+        </li>
+
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=rep_platform">
+            <bz:name>rep_platform</bz:name>
+            <bz:description>Hardware</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=bug_file_loc">
+
+            <bz:name>bug_file_loc</bz:name>
+            <bz:description>URL</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=op_sys">
+            <bz:name>op_sys</bz:name>
+
+            <bz:description>OS</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=bug_status">
+            <bz:name>bug_status</bz:name>
+            <bz:description>Status</bz:description>
+
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=status_whiteboard">
+            <bz:name>status_whiteboard</bz:name>
+            <bz:description>Whiteboard</bz:description>
+          </bz:field>
+        </li>
+
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=keywords">
+            <bz:name>keywords</bz:name>
+            <bz:description>Keywords</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=resolution">
+
+            <bz:name>resolution</bz:name>
+            <bz:description>Resolution</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=bug_severity">
+            <bz:name>bug_severity</bz:name>
+
+            <bz:description>Severity</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=priority">
+            <bz:name>priority</bz:name>
+            <bz:description>Priority</bz:description>
+
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=component">
+            <bz:name>component</bz:name>
+            <bz:description>Component</bz:description>
+          </bz:field>
+        </li>
+
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=assigned_to">
+            <bz:name>assigned_to</bz:name>
+            <bz:description>Assignee</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=reporter">
+
+            <bz:name>reporter</bz:name>
+            <bz:description>Reporter</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=votes">
+            <bz:name>votes</bz:name>
+
+            <bz:description>Votes</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=qa_contact">
+            <bz:name>qa_contact</bz:name>
+            <bz:description>QA Contact</bz:description>
+
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=cc">
+            <bz:name>cc</bz:name>
+            <bz:description>CC</bz:description>
+          </bz:field>
+        </li>
+
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=dependson">
+            <bz:name>dependson</bz:name>
+            <bz:description>Depends on</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=blocked">
+
+            <bz:name>blocked</bz:name>
+            <bz:description>Blocks</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=attachments.description">
+            <bz:name>attachments.description</bz:name>
+
+            <bz:description>Attachment description</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=attachments.filename">
+            <bz:name>attachments.filename</bz:name>
+            <bz:description>Attachment filename</bz:description>
+
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=attachments.mimetype">
+            <bz:name>attachments.mimetype</bz:name>
+            <bz:description>Attachment mime type</bz:description>
+          </bz:field>
+        </li>
+
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=attachments.ispatch">
+            <bz:name>attachments.ispatch</bz:name>
+            <bz:description>Attachment is patch</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=attachments.isobsolete">
+
+            <bz:name>attachments.isobsolete</bz:name>
+            <bz:description>Attachment is obsolete</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=attachments.isprivate">
+            <bz:name>attachments.isprivate</bz:name>
+
+            <bz:description>Attachment is private</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=target_milestone">
+            <bz:name>target_milestone</bz:name>
+            <bz:description>Target Milestone</bz:description>
+
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=creation_ts">
+            <bz:name>creation_ts</bz:name>
+            <bz:description>Creation date</bz:description>
+          </bz:field>
+        </li>
+
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=delta_ts">
+            <bz:name>delta_ts</bz:name>
+            <bz:description>Changed</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=longdesc">
+
+            <bz:name>longdesc</bz:name>
+            <bz:description>Comment</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=alias">
+            <bz:name>alias</bz:name>
+
+            <bz:description>Alias</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=everconfirmed">
+            <bz:name>everconfirmed</bz:name>
+            <bz:description>Ever confirmed</bz:description>
+
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=reporter_accessible">
+            <bz:name>reporter_accessible</bz:name>
+            <bz:description>Reporter accessible</bz:description>
+          </bz:field>
+        </li>
+
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=cclist_accessible">
+            <bz:name>cclist_accessible</bz:name>
+            <bz:description>CC list accessible</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=bug_group">
+
+            <bz:name>bug_group</bz:name>
+            <bz:description>Group</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=commenter">
+            <bz:name>commenter</bz:name>
+
+            <bz:description>Commenter</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=flagtypes.name">
+            <bz:name>flagtypes.name</bz:name>
+            <bz:description>Flags</bz:description>
+
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=requestees.login_name">
+            <bz:name>requestees.login_name</bz:name>
+            <bz:description>Flag Requestee</bz:description>
+          </bz:field>
+        </li>
+
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=setters.login_name">
+            <bz:name>setters.login_name</bz:name>
+            <bz:description>Flag Setter</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=content">
+
+            <bz:name>content</bz:name>
+            <bz:description>Content</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=attach_data.thedata">
+            <bz:name>attach_data.thedata</bz:name>
+
+            <bz:description>Attachment data</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=days_elapsed">
+            <bz:name>days_elapsed</bz:name>
+            <bz:description>Days since bug changed</bz:description>
+
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=owner_idle_time">
+            <bz:name>owner_idle_time</bz:name>
+            <bz:description>Time Since Assignee Touched</bz:description>
+          </bz:field>
+        </li>
+
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=attachments.submitter">
+            <bz:name>attachments.submitter</bz:name>
+            <bz:description>Attachment creator</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=longdescs.isprivate">
+
+            <bz:name>longdescs.isprivate</bz:name>
+            <bz:description>Comment is private</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=see_also">
+            <bz:name>see_also</bz:name>
+
+            <bz:description>See Also</bz:description>
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=longdescs.count">
+            <bz:name>longdescs.count</bz:name>
+            <bz:description>Number of Comments</bz:description>
+
+          </bz:field>
+        </li>
+        <li>
+          <bz:field rdf:about="http://localhost:5080/field.cgi?name=tag">
+            <bz:name>tag</bz:name>
+            <bz:description>Tags</bz:description>
+          </bz:field>
+        </li>
+
+    </Seq>
+  </bz:fields>
+</bz:installation>
+
+</RDF>
+

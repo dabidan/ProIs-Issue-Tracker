@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE bugzilla SYSTEM "https://landfill.bugzilla.org/bugzilla-tip-sqlite/page.cgi?id=bugzilla.dtd">
+
+<bugzilla version="4.3"
+          urlbase="https://landfill.bugzilla.org/bugzilla-tip-sqlite/"
+          
+          maintainer="webmaster@bugzilla.org"
+>
+
+    <bug>
+          <bug_id>6155</bug_id>
+          
+          <creation_ts>2007-12-03 06:25:00 -0800</creation_ts>
+          <short_desc>Test bug attachment</short_desc>
+          <delta_ts>2011-07-02 12:13:13 -0700</delta_ts>
+          <reporter_accessible>1</reporter_accessible>
+          <cclist_accessible>1</cclist_accessible>
+          <classification_id>2</classification_id>
+          <classification>Mercury</classification>
+          <product>WorldControl</product>
+          <component>EconomicControl</component>
+          <version>1.0</version>
+          <rep_platform>PC</rep_platform>
+          <op_sys>Windows XP</op_sys>
+          <bug_status>UNCONFIRMED</bug_status>
+          <resolution></resolution>
+          
+          
+          <bug_file_loc></bug_file_loc>
+          <status_whiteboard></status_whiteboard>
+          <keywords></keywords>
+          <priority>P2</priority>
+          <bug_severity>normal</bug_severity>
+          <target_milestone>World 2.0</target_milestone>
+          
+          
+          <everconfirmed>0</everconfirmed>
+          <reporter>alen</reporter>
+          <assigned_to name="Tara Hernandez">tara</assigned_to>
+          <cc>sepp.renfer</cc>
+          
+
+      
+
+      
+
+      
+
+          <long_desc isprivate="0">
+            <commentid>11119</commentid>
+            <who name="">alen</who>
+            <bug_when>2007-12-03 06:25:45 -0800</bug_when>
+            <thetext>test123
+
+http://www.croteam.com</thetext>
+          </long_desc>
+          <long_desc isprivate="0">
+            <commentid>11120</commentid>
+              <attachid>982</attachid>
+            <who name="">alen</who>
+            <bug_when>2007-12-03 06:28:23 -0800</bug_when>
+            <thetext>Created attachment 982
+blah</thetext>
+          </long_desc>
+          <long_desc isprivate="0">
+            <commentid>22575</commentid>
+            <who name="">sepp.renfer</who>
+            <bug_when>2011-07-02 12:13:13 -0700</bug_when>
+            <thetext>sadasd</thetext>
+          </long_desc>
+      
+          <attachment
+              isobsolete="0"
+              ispatch="0"
+              isprivate="0"
+          >
+            <attachid>982</attachid>
+            <date>2007-12-03 06:28:00 -0800</date>
+            <delta_ts>2007-12-03 06:28:23 -0800</delta_ts>
+            <desc>blah</desc>
+            <filename>testatt.txt</filename>
+            <type>text/plain</type>
+            <size>22</size>
+            <attacher>alen</attacher>
+            
+              <data encoding="base64">dGVzdGluZyB0ZXN0aW5nIDEyMyENCg==
+</data>
+
+          </attachment>
+      
+
+    </bug>
+
+</bugzilla>
