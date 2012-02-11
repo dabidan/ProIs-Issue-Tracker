@@ -3,14 +3,17 @@ Created on 07.02.2012
 
 @author: user
 '''
-import string,cgi,time
-import re
-from os import curdir, sep
-from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-#import pri
-
+import time
+import httprequest
+from httprequest import RDFResponse, XMLResponse, RedirectLocation
+import database
+from database import dbfield, DBRecord, dbtable, Database
 from xml.etree import ElementTree as ET
-import StringIO
+import hashlib
+import base64
+import random
+import os
+import re
 
 
 
@@ -241,135 +244,110 @@ class BugList(object):
             ET.SubElement(seq,XMLNS_rdf+'li').text=elem
         return result
 
+class Project(DBRecord):
+    pid=dbfield('pid','INTEGER','PRIMARY KEY AUTOINCREMENT')
+    project_id=dbfield('project_id','TEXT','UNIQUE')
+    name=dbfield('project_name','TEXT')
+    description=dbfield('project_description','TEXT')
+    creator=dbfield('creator','TEXT')
+    creatorion_date=dbfield('creation_date','TEXT')
+
+class User(DBRecord):
+    uid=dbfield('user_id','INTEGER','PRIMARY KEY AUTOINCREMENT')
+    login=dbfield('user_login','TEXT','UNIQUE')
+    passwd=dbfield('user_passwd','TEXT')
+    name=dbfield('user_name','TEXT')
+    email=dbfield('user_email','TEXT')
+    flags=dbfield('user_flags','TEXT')
+
+    @staticmethod
+    def mkpasswd(passwd, salt=None):
+        if salt is None: salt=os.urandom(8)
+        x=hashlib.sha256(passwd+salt)
+        return base64.b64encode(salt+x.digest())
+    
+    def checkpasswd(self, passwd):
+        pwd=base64.b64decode(self.passwd)
+        return self.passwd==self.mkpasswd(passwd, salt=pwd[:8])
+
+class IssueBase(Database):
+    users=dbtable('Users',User)
+    
+
+issuebase=IssueBase('test.db')
+
+class Session(object):
+    sessions={}
+    
+    def __init__(self, request):
+        login=request.query.get('Bugzilla_login')[-1]
+        passwd=request.query.get('Bugzilla_password')[-1]
+        user=issuebase.users.query_one(login=login)
+        if user is None: raise KeyError("Login not found")
+        if not user.checkpasswd(passwd): raise AssertionError("Password wrong")
+        while True:
+            cookie=base64.b64encode(os.urandom(6))
+            if self is self.sessions.setdefault(cookie,self):
+                break
+        self.expire=time.time()+3600
+        self.user=user
+        request.set_cookies['Bugzilla_login']='yes'
+        request.set_cookies['Bugzilla_logincookie']=cookie
+    
+    @classmethod
+    def get_session(cls, request):
+        tt=time.time()
+        for cookie,session in cls.sessions.items():
+            if session.expire<tt: del cls.sessions[cookie]
+        result=cls.sessions.get(request.cookies.get('Bugzilla_logincookie'))
+        if result is not None:
+            result.expire=tt+3600
+        return result
 
 
-class MyHandler(BaseHTTPRequestHandler):
-
-    def do_GET(self):
-        m=re.match(r"(.*?)/([^/?]*)(\?.*)?$",self.path)
-        print m.groups()
-        xpath=m.group(1)
-        xfilename=m.group(2) or 'index.cgi'
-        xquery=(m.group(3) or '?')[1:]
+def do_index(request, Bugzilla_login=None, **kw):
+    if Bugzilla_login:
         try:
-            if xfilename.endswith(".html"):
-                f = open(curdir + sep + xpath+'/'+xfilename) #self.path has /test.html
-#note that this potentially makes every file on your computer readable by the internet
+            session=Session(request)
+        except (KeyError, AssertionError):
+            return "<html><body>Wrong login/password</body></html>"
+    else:
+        session=Session.get_session(request)
+        if session is None: return "<html><body>Not logged in!</body></html>"
+    return "<html><body>MyLyn-Interface</body></html>"
 
-                self.send_response(200)
-                self.send_header('Content-type',        'text/html')
-                self.end_headers()
-                self.wfile.write(f.read())
-                f.close()
-                return
-            if xfilename.endswith(".cgi"):   #our dynamic content
-                query = cgi.parse_qs(xquery or '', keep_blank_values=True)
-                self._dispatch(xfilename, query)
-                return
-                
-            return
-                
-        except IOError:
-            self.send_error(404,'File Not Found: %s' % self.path)
-        except int: #AttributeError:
-            print "Not found:",xfilename
-            print query
-     
+def do_config(request, ctype=None):
+    session=Session.get_session(request)
+    if session is None: return "<html><body>Not logged in!</body></html>"
 
-    def do_POST(self):
-        m=re.match(r"(.*?)/([^/?]*)(\?.*)?$",self.path)
-        print m.groups()
-        xpath=m.group(1)
-        xfilename=m.group(2) or 'index.cgi'
-        xquery=m.group(3)
-        
-        try:
-            ctype, pdict = cgi.parse_header(self.headers.getheader('content-type'))
-            if ctype == 'multipart/form-data':
-                query=cgi.parse_multipart(self.rfile, pdict)
-            else:
-                qs=self.rfile.read(int(self.headers.getheader('content-length')))
-                query = cgi.parse_qs(qs, keep_blank_values=True)
-            self._dispatch(xfilename, query)
-        except AttributeError, e:
-            print "POST", query
-            print e
+    if ctype=='rdf':
+        config=Configuration()
+        return RDFResponse(config.to_xml())
 
-    def _dispatch(self, xfilename,query):
-        self.cookies={}
-        for cooks in self.headers.getheaders('cookie'):
-            for cook in cooks.split(';'):
-                key,val = map(str.strip,cook.split('=',1))
-                self.cookies[key]=val
-        print "Cookies:",self.cookies
-        self.set_cookies={}
-        self.content_type='text/html'
-        response=getattr(self,'do_%s'%xfilename[:-4])(**query)
-        self.send_response(200)
-        self.send_header("Content-type", self.content_type)
-        self.send_header("Content-length", str(len(response)))
-        for cookie,value in self.set_cookies.iteritems():
-            self.send_header('Set-Cookie', '%s=%s'%(cookie,value))
-        self.end_headers()
-        self.wfile.write(response)
-        # shut down the connection
-        self.wfile.flush()
-        self.connection.shutdown(1)
+def do_buglist(request, **kw):
+    session=Session.get_session(request)
+    if session is None: return "<html><body>Not logged in!</body></html>"
 
+    print kw
+    config=BugList()
+    return RDFResponse(config.to_xml())
 
-    def do_index(self, **kw):
-        print kw
-        self.set_cookies['Bugzilla_login']='34'
-        self.set_cookies['Bugzilla_logincookie']='xyz'
-        self.content_type='text/html'
-        return "<html><body>MyLyn-Interface</body></html>"
-        #f=open('land/index.cgi')
-        #self.wfile.write(f.read())
-        #f.close()
+def do_show_bug(request, ctype=None, **kw):
+    session=Session.get_session(request)
+    if session is None: return "<html><body>Not logged in!</body></html>"
 
-    def do_config(self, ctype=None):
-        if ctype==['rdf']:
-            self.content_type='application/rdf+xml'
-            config=Configuration()
-            s=StringIO.StringIO()
-            ET.ElementTree(element=config.to_xml()).write(s)
-            return s.getvalue()
-
-    def do_buglist(self, **kw):
-        print kw
-        self.content_type='application/rdf+xml'
+    print kw
+    if ctype=='xml':
         config=BugList()
-        s=StringIO.StringIO()
-        ET.ElementTree(element=config.to_xml()).write(s)
-        return s.getvalue()
-        #f=open('buglist.rdf')
-        #self.wfile.write(f.read())
-        #f.close()
+        return XMLResponse(config.bugs[0].show_xml())
+    return "xxx"
 
-    def do_show_bug(self, **kw):
-        print kw
-        if kw.get('ctype')==['xml']:
-            self.content_type='application/xml'
-            config=BugList()
-            s=StringIO.StringIO()
-            ET.ElementTree(element=config.bugs[0].show_xml()).write(s)
-            return s.getvalue()
-        return "xxx"
-        #f=open('show_bug.cgi?id=6155&ctype=xml')
-        #self.wfile.write(f.read())
-        #f.close()
+def do_process_bug(request, **kw):
+    session=Session.get_session(request)
+    if session is None: return "<html><body>Not logged in!</body></html>"
 
-    def do_relogin(self, **kw):
-        self.do_index(**kw);return
-        print kw
-        self.send_response(200)
-        self.send_header('Content-type',        'text/html')
-        self.end_headers()
-        self.wfile.write("hey, today is the" + str(time.localtime()[7]))
-        self.wfile.write(" day in the year " + str(time.localtime()[0]))
-
-    def do_process_bug(self, **kw):
-        guut
+    print kw
+    pass
         
 {'addselfcc': ['1'], 'classification_id': ['1'], 
 'reporter_accessible': ['1'], 'set_default_assignee': ['1'], 
@@ -388,10 +366,55 @@ class MyHandler(BaseHTTPRequestHandler):
  'form_name': ['process_bug'], 'resolution': [''], 
  'resolutionInput': ['fixed']}
 
+def do_login(request, login=None, Bugzilla_login=None, Bugzilla_password=None, realname=None, email=None, **kw):
+    error=None;script=None
+    if login=='Register':
+        try:
+            u=issuebase.users.new(login=Bugzilla_login, passwd=User.mkpasswd(Bugzilla_password), name=realname, email=email)
+            u.commit()
+            login='login'
+        except:
+            error="""<div class="alert alert-error">Username already used! Choose another one</div>"""
+            script="""
+            $('#demo').collapse('toggle')
+            $('#Bugzilla_login').parent().parent().addClass('error')
+            $('#Bugzilla_login').after('<span class="help-inline">Try another</span>')
+            $('#Bugzilla_login').val(%r)
+            $('#Bugzilla_password').val(%r)
+            $('#realname').val(%r)
+            $('#email').val(%r)
+            """%(Bugzilla_login,Bugzilla_password,realname,email)
+    if login=='login':
+        try:
+            session=Session(request)
+            raise RedirectLocation('/index.html')
+        except (KeyError, AssertionError), e:
+            print e
+            pass
+        error="""<div class="alert alert-error">Invalid login or password!</div>"""
+    w=open('templates/login.html')
+    response=w.read()
+    if error:
+        response=re.sub(r'<!-- insert message -->',error,response)
+    if script:
+        response=re.sub(r'/\* insert script \*/',script,response)
+    return response
 
 def main():
+    server = httprequest.DynamicHTTPServer(('', 5080))
+    server.add_script('/_mylyn(/index\.cgi|/)?', do_index, multiparam=False)
+    server.add_script('/_mylyn/relogin\.cgi', do_index, multiparam=False)
+    server.add_script('/_mylyn/config\.cgi', do_config, multiparam=False)
+    server.add_script('/_mylyn/buglist\.cgi', do_buglist, multiparam=False)
+    server.add_script('/_mylyn/show_bug\.cgi', do_show_bug, multiparam=False)
+    server.add_script('/_mylyn/process_bug\.cgi', do_process_bug, multiparam=False)
+    server.add_script('/_mylyn/.*', lambda: None, multiparam=False)
+    # raise error for anythinh else in _mylyn
+    
+    server.add_script('/login\.html',do_login)
+    server.add_script('/.*',httprequest.FileHandler('htdocs'))
+    
     try:
-        server = HTTPServer(('', 5080), MyHandler)
         print 'started httpserver...'
         server.serve_forever()
     except KeyboardInterrupt:

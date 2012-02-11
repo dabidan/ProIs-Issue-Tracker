@@ -52,18 +52,33 @@ class RowGetter(object):
         self._db=db
         self.table_name=table_name
         self.record_type=record_type
-        
-    def __getitem__(self, index):
+
+    def __select_sql(self, conditions, cond_vars):
         c=self._db.cursor()
         fields=[fld.field_name for fld in self.record_type.__dict__.itervalues() if hasattr(fld,'get_column_definition')]
-        c.execute("select %s from %s where _rowid_=%i"%(','.join(fields),self.table_name,index))
+        c.execute("select _rowid_, %s from %s where %s"%(','.join(fields),self.table_name,conditions),cond_vars)
         row=c.fetchone()
         c.close()
         if row:
-            record=self.record_type(self._db,self.table_name,index,dict(zip(fields,row)))
+            record=self.record_type(self._db,self.table_name,row[0],dict(zip(fields,row[1:])))
         else:
             raise IndexError()
         return record
+        
+    def __getitem__(self, index):
+        return self.__select_sql('_rowid_=?',[index])
+
+    def query_one(self, **kw):
+        fields=[]
+        cvars=[]
+        for key,value in kw.iteritems():
+            fld=self.record_type.__dict__[key]
+            if hasattr(fld,'get_column_definition'):
+                fields.append(fld.field_name)
+                cvars.append(value)
+            else:
+                raise KeyError('Field %s not defined.'%key)
+        return self.__select_sql(' and '.join(['%s=?'%fld for fld in fields]), cvars)
     
     def new(self, **kw):
         record = self.record_type(self._db,self.table_name)
@@ -119,7 +134,7 @@ class Database(object):
         self.commit()
         
 
-if __name__=='main':
+if __name__=='__main__':
     class User(DBRecord):
         uid=dbfield('user_id','INTEGER','PRIMARY KEY AUTOINCREMENT')
         login=dbfield('user_login','TEXT','UNIQUE')
@@ -140,8 +155,8 @@ if __name__=='main':
     #uu.name='ich'
     #uu.passwd='geheim'
     #uu.commit()
-    uu=ib.users[{'x':1}]
-    print uu.uid,uu.name,uu.passwd
+    uu=ib.users.query_one(login='abc2')
+    print uu.uid,uu.login,uu.passwd, uu.email
     uu=ib.users.new(login='abc',passwd='xxz',email='here@nowhere.com')
     print uu.login
     uu.commit()

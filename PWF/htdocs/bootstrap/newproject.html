@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Project Center</title>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+</head>
+<body>
+
+<ul class="breadcrumb">
+  <li>
+    <a href="#">Home</a> <span class="divider">/</span>
+  </li>
+  <li class="active">
+    <a href="#">New Project</a>
+  </li>
+</ul>
+
+
+<div class="container">
+  <div class="row">
+    <div class="span8">
+      <form class="form-horizontal" id="login_form" method="post" action"/login.html">
+        <fieldset>
+          <legend>New Project</legend>
+          <!-- insert message -->
+          <div class="control-group">
+            <label class="control-label" for="pid">Project-ID</label>
+            <div class="controls">
+			<div class="input-prepend">
+              <span class="add-on"><i class="icon-barcode"></i></span>
+              <input class="input-medium" name="pid" id="pid" type="text">
+            </div>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="name">Project name</label>
+			<div class="controls input-prepend">
+              <span class="add-on"><i class="icon-star"></i></span>
+              <input class="input-xlarge" name="name" id="name" type="text">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="descr">Description</label>
+			<div class="controls input-prepend">
+              <span class="add-on"><i class="icon-edit"></i></span>
+	          <textarea class="input-xlarge" id="descr" name="descr" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="icon">Picture</label>
+			<div class="controls input-prepend">
+              <span class="add-on"><i class="icon-picture"></i></span>
+              <input class="input-xlarge" name="icon" id="icon" type="file">
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button id='sub_btn' type="submit" class="btn btn-primary" name="create" value="create">Create</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="span4">
+      <h3>New Project</h3>
+      <p>Create a new project with a short description.
+      </p>
+    </div>
+  </div>
+	
+</div>	
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script>
+    /* insert script */
+    </script>
+ </body>
+</html>
