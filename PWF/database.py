@@ -16,7 +16,11 @@ class dbfield(object):
         self.field_index=dbfield.__FIELD_INDEX
         
     def __get__(self, obj, cls):
-        return obj._dbrecord[self.field_name]
+        try:
+            return obj._dbrecord[self.field_name]
+        except KeyError:
+            obj._dbrecord[self.field_name]=result=obj.get_field(self.field_name)
+            return result
         
     def __set__(self, obj, val):
         obj._dbrecord[self.field_name]=val
@@ -42,27 +46,46 @@ class DBRecord(object):
                 c.execute("insert into %s (%s) values (%s)"%(self._table_name,','.join(names),','.join(['?']*len(values))),values)
                 self._rowid=c.lastrowid
             else:
-                c.execute("update %s  set %s where _rowid_=%i"%(self._table_name,','.join('%s=?'%names),self._rowid),values)
+                c.execute("update %s set %s where _rowid_=%i"%(self._table_name,','.join(['%s=?'%name for name in names]),self._rowid),values)
             self._dbchanged=set()
             self._db.commit()
             c.close()
+            
+    def get_field(self, fieldname):
+        c = self._db.cursor()
+        c.execute("select %s from %s where _rowid_=%i"%(fieldname,self._table_name,self._rowid))
+        row=c.fetchone()
+        return row[0]
 
 class RowGetter(object):
     def __init__(self, db, table_name, record_type):
         self._db=db
         self.table_name=table_name
         self.record_type=record_type
+    
+    def new(self, **kw):
+        record = self.record_type(self._db,self.table_name)
+        for key,val in kw.iteritems():
+            fld = self.record_type.__dict__.get(key)
+            if hasattr(fld,'get_column_definition'):
+                setattr(record,key,val)
+            else:
+                raise ValueError('field %s not defined.'%key)
+        return record
 
+    def __get_fieldnames(self):
+        return [fld.field_name for fld in self.record_type.__dict__.itervalues() if hasattr(fld,'get_column_definition') and fld.data_type!='BLOB']
+    
     def __select_sql(self, conditions, cond_vars):
         c=self._db.cursor()
-        fields=[fld.field_name for fld in self.record_type.__dict__.itervalues() if hasattr(fld,'get_column_definition')]
+        fields=self.__get_fieldnames()
         c.execute("select _rowid_, %s from %s where %s"%(','.join(fields),self.table_name,conditions),cond_vars)
         row=c.fetchone()
         c.close()
         if row:
             record=self.record_type(self._db,self.table_name,row[0],dict(zip(fields,row[1:])))
         else:
-            raise IndexError()
+            raise IndexError('no entry found')
         return record
         
     def __getitem__(self, index):
@@ -78,17 +101,41 @@ class RowGetter(object):
                 cvars.append(value)
             else:
                 raise KeyError('Field %s not defined.'%key)
-        return self.__select_sql(' and '.join(['%s=?'%fld for fld in fields]), cvars)
-    
-    def new(self, **kw):
-        record = self.record_type(self._db,self.table_name)
-        for key,val in kw.iteritems():
-            fld = self.record_type.__dict__.get(key)
+        try:
+            return self.__select_sql(' and '.join(['%s=?'%fld for fld in fields]), cvars)
+        except: return None
+
+    def query_iter(self, **kw):
+        fields=[]
+        cvars=[]
+        for key,value in kw.iteritems():
+            fld=self.record_type.__dict__[key]
             if hasattr(fld,'get_column_definition'):
-                setattr(record,key,val)
+                fields.append(fld.field_name)
+                cvars.append(value)
             else:
-                raise ValueError('field %s not defined.'%key)
-        return record
+                raise KeyError('Field %s not defined.'%key)
+        conditions=' and '.join(['%s=?'%fld for fld in fields])
+        c=self._db.cursor()
+        fields=self.__get_fieldnames()
+        c.execute("select _rowid_, %s from %s where %s"%(','.join(fields),self.table_name,conditions),cvars)
+        while True:
+            row=c.fetchone()
+            if row is None: break
+            record=self.record_type(self._db,self.table_name,row[0],dict(zip(fields,row[1:])))
+            yield record
+
+    def __iter__(self):
+        c=self._db.cursor()
+        fields=self.__get_fieldnames()
+        c.execute("select _rowid_, %s from %s"%(','.join(fields),self.table_name))
+        while True:
+            row=c.fetchone()
+            if row is None: break
+            record=self.record_type(self._db,self.table_name,row[0],dict(zip(fields,row[1:])))
+            yield record
+        c.close()
+        
 
 class dbtable(object):
     def __init__(self, table_name, record_type):
@@ -122,7 +169,9 @@ class Database(object):
         for tab in self.__class__.__dict__.itervalues():
             if not hasattr(tab,'get_table_definition'):
                 continue
-            c.execute(tab.get_table_definition())
+            try:
+                c.execute(tab.get_table_definition())
+            except: print "Creation of %s failed."%tab.table_name
         self.commit()
 
     def drop_all(self):

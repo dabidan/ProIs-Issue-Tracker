@@ -11,6 +11,9 @@ import mimetypes
 from xml.etree import ElementTree as ET
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 
+def encode_html(s):
+    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
 class RedirectLocation(Exception):
     def __init__(self, location):
         self.location=location
@@ -34,9 +37,20 @@ class XMLResponse(object):
         s=StringIO.StringIO()
         ET.ElementTree(element=self.element).write(s)
         return s.getvalue()
-        
 
-class _mimestr(object):
+class TemplateResponse(object):
+    mime='text/html'
+    def __init__(self, filename, values):
+        self.filename=filename
+        self.values=values
+        
+    def __str__(self):
+        temp=open(self.filename)
+        template=temp.read()
+        temp.close()
+        return re.sub(r'{([A-Za-z0-9_]+)}',lambda x: self.values.get(x.group(1),''),template)
+
+class MimeResponse(object):
     def __init__(self, string, mime='text/html'):
         self.string=string
         self.mime=mime
@@ -54,7 +68,7 @@ class FileHandler(object):
             filename+='/index.html'
             w=open(filename)
         mimetype=mimetypes.types_map.get('.'+filename.split('.')[-1],'text/html') #@UndefinedVariable
-        return _mimestr(w.read(),mimetype)
+        return MimeResponse(w.read(),mimetype)
 
 class DynamicHTTPRequestHandler(BaseHTTPRequestHandler):
 
