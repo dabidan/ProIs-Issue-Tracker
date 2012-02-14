@@ -107,9 +107,8 @@ class Issue(DBRecord):
         ET.SubElement(result,XMLNS_bz+'changeddate').text=self.creation_date
         return result
 
-    def to_xml(self, host):
-        result=ET.Element('bugzilla',version="4.3")
-        bug=ET.SubElement(result, 'bug')
+    def to_xml(self, host, excludefields=()):
+        bug=ET.Element('bug')
         ET.SubElement(bug,'bug_id').text=str(self.iid)
         ET.SubElement(bug, 'creation_ts').text=self.creation_date
         ET.SubElement(bug, 'delta_ts').text=self.modification_date
@@ -133,7 +132,9 @@ class Issue(DBRecord):
             if txt: ET.SubElement(bug, elem).text=txt
         for cmt in issuebase.comments.query_iter(issue_id=self.iid):
             bug.append(cmt.to_xml())
-        return result
+        for att in issuebase.attachments.query_iter(issue_id=self.iid):
+            bug.append(att.to_xml('attachmentdata' in excludefields))
+        return bug
 """<bugzilla version="4.3"
           <keywords></keywords>
           <target_milestone>World 2.0</target_milestone>
@@ -172,8 +173,43 @@ class Comment(DBRecord):
         if self.creator_id is not None:
             cc=issuebase.users[self.creator_id]
             ET.SubElement(result,'who',name=cc.name).text=cc.login
+        else:
+            ET.SubElement(result,'who',name='unknown').text='unknown'
         ET.SubElement(result,'bug_when').text=self.creation_date
         ET.SubElement(result,'thetext').text=self.text
+        return result
+
+class Attachment(DBRecord):
+    aid=dbfield('aid','INTEGER','PRIMARY KEY AUTOINCREMENT')
+    issue_id=dbfield('issue_id','INTEGER')
+    is_patch=dbfield('is_patch','INTEGER')
+    is_obsolete=dbfield('is_obsolete','INTEGER')
+    creator_id=dbfield('creator_id','INTEGER')
+    creation_date=dbfield('creation_date','TEXT')
+    modifier_id=dbfield('modifier_id','INTEGER')
+    modification_date=dbfield('modification_date','TEXT')
+    description=dbfield('description','TEXT')
+    comment=dbfield('comment','TEXT')
+    mimetype=dbfield('mimetype','TEXT')
+    filename=dbfield('filename','TEXT')
+    data=dbfield('data','BLOB')
+
+    def to_xml(self, exclude):
+        result=ET.Element('attachment', isprivate='0',ispatch=str(self.is_patch),isobsolete=str(self.is_obsolete))
+        ET.SubElement(result,'attachid').text=str(self.aid)
+        if self.creator_id is not None:
+            cc=issuebase.users[self.creator_id]
+            ET.SubElement(result,'attacher').text=cc.login
+        else:
+            ET.SubElement(result,'attacher').text='unknown'
+        ET.SubElement(result,'date').text=self.creation_date
+        ET.SubElement(result,'delta_ts').text=self.modification_date
+        ET.SubElement(result,'desc').text=self.description
+        ET.SubElement(result,'filename').text=self.filename
+        ET.SubElement(result,'type').text=self.mimetype
+        ET.SubElement(result,'size').text=str(len(self.data))
+        if not exclude:
+            ET.SubElement(result,'data',encoding="base64").text=base64.b64encode(str(self.data))
         return result
 
 class Project(DBRecord):
@@ -213,7 +249,7 @@ class User(DBRecord):
     @staticmethod
     def mkpasswd(passwd, salt=None):
         if salt is None: salt=os.urandom(8)
-        x=hashlib.sha256(passwd+salt)
+        x=hashlib.sha256(passwd.encode('utf-8')+salt)
         return base64.b64encode(salt+x.digest())
     
     def checkpasswd(self, passwd):
@@ -225,11 +261,12 @@ class IssueBase(Database):
     projects=dbtable('Projects',Project)
     issues=dbtable('Issues',Issue)
     comments=dbtable('Comments',Comment)
+    attachments=dbtable('Attachments',Attachment)
     
 
 issuebase=IssueBase('test.db')
 #issuebase.drop_all()
-#issuebase.cursor().execute("drop table Issues")
+#issuebase.cursor().execute("drop table Attachments")
 issuebase.create_tables()
 
 class Session(object):
@@ -272,7 +309,7 @@ def do_mylyn_index(request, Bugzilla_login=None, **kw):
             return "<html><body>Wrong login/password</body></html>"
     else:
         session=Session.get_session(request)
-        if session is None: return "<html><body>Not logged in!</body></html>"
+        if session is None: return "<html><head><title>Log in to Bugzilla</title></head><body>Not logged in!</body></html>"
     return "<html><body>MyLyn-Interface</body></html>"
 
 def do_mylyn_config(request, ctype=None):
@@ -283,8 +320,8 @@ def do_mylyn_config(request, ctype=None):
         return RDFResponse(config.to_xml(request.headers.getheader('host')))
 
 def do_mylyn_buglist(request, **kw):
-    #session=Session.get_session(request)
-    #if session is None: return "<html><body>Not logged in!</body></html>"
+    session=Session.get_session(request)
+    if session is None: return "<html><head><title>Log in to Bugzilla</title></head><body>Not logged in!</body></html>"
     print kw
     host=request.headers.getheader('host')
     buglist=ET.Element(XMLNS_rdf+'result',
@@ -298,27 +335,29 @@ def do_mylyn_buglist(request, **kw):
         ET.SubElement(seq,XMLNS_rdf+'li').append(bug.to_short_xml(host))
     return RDFResponse(buglist)
 
-def do_mylyn_show_bug(request, ctype=None, id=None, **kw):
-    #session=Session.get_session(request)
-    #if session is None: return "<html><body>Not logged in!</body></html>"
-    print kw
-    if ctype=='xml':
-        issue=issuebase.issues[int(id)]
-        return XMLResponse(issue.to_xml(request.headers.getheader('host')))
+def do_mylyn_show_bug(request, ctype=None, id=None, excludefield=(), **kw):
+    session=Session.get_session(request)
+    if session is None: return "<html><head><title>Log in to Bugzilla</title></head><body>Not logged in!</body></html>"
+    print kw,excludefield
+    if True or ctype[-1]=='xml':
+        result=ET.Element('bugzilla',version="4.3")
+        for ii in id:
+            issue=issuebase.issues[int(ii)]
+            result.append(issue.to_xml(request.headers.getheader('host'),excludefield))
+        return XMLResponse(result)
     return "xxx"
 
 def do_mylyn_process_bug(request, **kw):
     session=Session.get_session(request)
-    print session
-    #if session is None: return "<html><body>Not logged in!</body></html>"
+    if session is None: return "<html><head><title>Log in to Bugzilla</title></head><body>Not logged in!</body></html>"
     if kw['bug_id']!=kw['id']: raise "Internal Error"
     iid=int(kw['id'])
     iss=issuebase.issues[iid]
     iss.modification_date=str(datetime.datetime.now()).split('.')[0]
-    ass=issuebase.users.query_one(login=kw['assigned_to'])
+    ass=issuebase.users.query_one(login=kw.get('assigned_to'))
     if ass is not None:
         iss.assignee_id=ass.uid
-    pro=issuebase.projects.query_one(name=kw['product'])
+    pro=issuebase.projects.query_one(name=kw.get('product'))
     if pro is not None:
         iss.project_id=pro.pid
     if kw.get('short_desc'):
@@ -328,7 +367,7 @@ def do_mylyn_process_bug(request, **kw):
             setattr(iss,elem,kw[elem])
     iss.commit()
     
-    if 'new_comment' in kw:
+    if 'new_comment' in kw and kw['new_comment'].strip():
         cmt=issuebase.comments.new()
         cmt.issue_id=iss._rowid
         cmt.is_private=0
@@ -349,28 +388,97 @@ def do_mylyn_process_bug(request, **kw):
         ):
         if elem in kw: kw.pop(elem)    
     print kw
-    
-    issue=issuebase.issues[iid]
-    return XMLResponse(issue.to_xml(request.headers.getheader('host')))
-#    return "<html><body>ok</body></html>"
-        
-{'addselfcc': ['1'], 'classification_id': ['1'], 
-'reporter_accessible': ['1'], 'set_default_assignee': ['1'], 
-'classification': ['cl'], 
-'status_whiteboard': ['ja da war mal was!\t\t'], 
-'bug_file_loc': ['uu'], 'rep_platform': ['PC'], 'dup_id': [''], 
-'new_comment': ['Neuer Komet'], 'keywords': ['funny, mystery'], 
-'id': ['124'], 'blocked': ['bl'], 
-'cclist_accessible': ['1'], 'bug_status': ['ASSIGNED'], 
-'short_desc': ['Keine Fehler'], 'priority': ['medium'],
- 'version': [''], 'newcc': ['du'], 'product': ['Test-Produkt'], 
- 'bug_severity': ['trivial'], 'qa_contact': ['dabi2'], 
- 'see_also': [''], 'longdesclength': ['1'], 'component': ['main'], 
- 'bug_id': ['124'], 'dependson': ['dp'], 'comment': ['Neuer Komet'], 
- 'op_sys': ['Linux'], 'alias': [''], 'assigned_to': ['dabi'], 
- 'form_name': ['process_bug'], 'resolution': [''], 
- 'resolutionInput': ['fixed']}
+    return """<html><head><title>Bug %s processed</title></head></html>"""%iid
+    #return "<html><body>%s ok</body></html>"%iid
 
+def do_mylyn_post_bug(request, **kw):
+    session=Session.get_session(request)
+    if session is None: return "<html><head><title>Log in to Bugzilla</title></head><body>Not logged in!</body></html>"
+    print kw
+    iss=issuebase.issues.new()
+    iss.creator_id=session.user.uid if session else None
+    iss.creation_date=str(datetime.datetime.now()).split('.')[0]
+    iss.modification_date=str(datetime.datetime.now()).split('.')[0]
+    ass=issuebase.users.query_one(login=kw.get('assigned_to'))
+    if ass is not None:
+        iss.assignee_id=ass.uid
+    pro=issuebase.projects.query_one(name=kw.get('product'))
+    if pro is not None:
+        iss.project_id=pro.pid
+    if kw.get('short_desc'):
+        iss.title = kw['short_desc']
+    for elem in ('bug_status','resolution','bug_file_loc','status_whiteboard','priority','bug_severity'):
+        if elem in kw:
+            setattr(iss,elem,kw[elem])
+    iss.commit()
+    
+    if 'new_comment' in kw and kw['new_comment'].strip():
+        cmt=issuebase.comments.new()
+        cmt.issue_id=iss._rowid
+        cmt.is_private=0
+        cmt.creator_id=session.user.uid if session else None
+        cmt.creation_date=str(datetime.datetime.now()).split('.')[0]
+        cmt.text=kw['new_comment']
+        cmt.commit()
+        
+    print kw
+    for elem in (
+        # used
+        'bug_id','id','assigned_to','product','short_desc','new_comment',
+        'bug_status','resolution','bug_file_loc','status_whiteboard','priority','bug_severity',
+        # ignored
+        'classification_id','classification','rep_platform','cclist_accessible',
+        'reporter_accessible','form_name','op_sys','version','keywords','blocked',
+        'everconfirmed','delta_ts','dependson','assigned_to_name','component',
+        ):
+        if elem in kw: kw.pop(elem)    
+    print kw
+    return """<html><head><title>Bug %s processed</title></head></html>"""%iss._rowid
+    #return "<html><body>%s ok</body></html>"%iid
+
+def do_mylyn_attachment(request, Bugzilla_login=None, action=None,**kw):
+    if Bugzilla_login:
+        try:
+            session=Session(request)
+        except (KeyError, AssertionError):
+            return "<html><body>Wrong login/password</body></html>"
+    else:
+        session=Session.get_session(request)
+
+    print session,action,kw
+    if action=='insert':
+        if session is None: return "<html><head><title>Log in to Bugzilla</title></head><body>Not logged in!</body></html>"
+        cmt=issuebase.attachments.new()
+        cmt.issue_id=int(kw['bugid'])
+        cmt.is_patch=int(kw.get('ispatch',0))
+        cmt.is_obsolete=int(kw.get('isobsolete',0))
+        cmt.creator_id=session.user.uid if session else None
+        cmt.creation_date=str(datetime.datetime.now()).split('.')[0]
+        cmt.modifier_id=session.user.uid if session else None
+        cmt.modification_date=str(datetime.datetime.now()).split('.')[0]
+        cmt.description=kw.get('description')
+        cmt.comment=kw.get('comment')
+        cmt.mimetype=kw.get('contenttypeentry',kw.get('data')[1])
+        cmt.filename=kw.get('data')[0]
+        cmt.data=buffer(kw.get('data')[3])
+        cmt.commit()
+    elif action=='update':
+        if session is None: return "<html><head><title>Log in to Bugzilla</title></head><body>Not logged in!</body></html>"
+        cmt=issuebase.attachments[int(kw['id'])]
+        cmt.modifier_id=session.user.uid if session else None
+        cmt.modification_date=str(datetime.datetime.now()).split('.')[0]
+        if 'ispatch' in kw: cmt.is_patch=int(kw['ispatch'])
+        if 'isobsolete' in kw: cmt.is_obsolete=int(kw['isobsolete'])
+        if 'description' in kw: cmt.is_description=kw['description']
+        if 'comment' in kw: cmt.comment=kw['comment']
+        if 'contenttypeentry' in kw: cmt.mimetype=kw['contenttypeentry']
+        if 'filename' in kw: cmt.filenamekw['filename']
+        cmt.commit()
+    else:
+        cmt=issuebase.attachments[int(kw['id'])]
+        request.add_headers['Content-disposition']='inline; filename="%s"'%cmt.filename
+        return MimeResponse(str(cmt.data),cmt.mimetype)
+    return """<html><head><title>Bug %s processed</title></head></html>"""%int(kw['bugid'])
 
 def do_list(request,**kw):
     session=Session.get_session(request)
@@ -557,8 +665,10 @@ def main():
     server.add_script('/_mylyn/relogin\.cgi', do_mylyn_index, multiparam=False)
     server.add_script('/_mylyn/config\.cgi', do_mylyn_config, multiparam=False)
     server.add_script('/_mylyn/buglist\.cgi', do_mylyn_buglist, multiparam=False)
-    server.add_script('/_mylyn/show_bug\.cgi', do_mylyn_show_bug, multiparam=False)
+    server.add_script('/_mylyn/show_bug\.cgi', do_mylyn_show_bug, multiparam=True)
+    server.add_script('/_mylyn/post_bug\.cgi', do_mylyn_post_bug, multiparam=False)
     server.add_script('/_mylyn/process_bug\.cgi', do_mylyn_process_bug, multiparam=False)
+    server.add_script('/_mylyn/attachment\.cgi', do_mylyn_attachment, multiparam=False)
     server.add_script('/_mylyn/.*', lambda: None, multiparam=False)
     # raise error for anythinh else in _mylyn
     

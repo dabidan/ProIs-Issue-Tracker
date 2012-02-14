@@ -1,0 +1,327 @@
+POST /bug/index.cgi HTTP/1.1
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Accept-encoding: gzip
+User-Agent: Mylyn/3.6.0 BugzillaConnector Eclipse/3.7.1 (org.eclipse.epp.package.java.product) HttpClient/3.1 Java/1.6.0_26 (Sun) Linux/2.6.16.60-0.42.9-smp (amd64; en_US)
+Host: localhost:8080
+Content-Length: 61
+
+Bugzilla_login=mack%40smt.zeiss.com&Bugzilla_password=dabi123
+
+HTTP/1.1 200 OK
+Date: Mon, 13 Feb 2012 14:56:35 GMT
+Server: Apache
+X-frame-options: SAMEORIGIN
+Set-Cookie: Bugzilla_login=1; path=/bug/; expires=Fri, 01-Jan-2038 00:00:00 GMT; HttpOnly
+Set-Cookie: Bugzilla_logincookie=1D6SZ89sPr; path=/bug/; expires=Fri, 01-Jan-2038 00:00:00 GMT; HttpOnly
+Transfer-Encoding: chunked
+Content-Type: text/html; charset=UTF-8
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>Bugzilla Main Page</title>
+
+
+<link rel="Top" href="http://zolxq00211:8080/bug/">
+
+
+GET /bug/relogin.cgi HTTP/1.1
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+User-Agent: Mylyn/3.6.0 BugzillaConnector Eclipse/3.7.1 (org.eclipse.epp.package.java.product) HttpClient/3.1 Java/1.6.0_26 (Sun) Linux/2.6.16.60-0.42.9-smp (amd64; en_US)
+Host: localhost:8080
+Cookie: $Version=0; Bugzilla_login=1; $Path=/bug/; Bugzilla_logincookie=1D6SZ89sPr; $Path=/bug/
+
+
+
+HTTP/1.1 302 Found
+Date: Mon, 13 Feb 2012 14:56:36 GMT
+Server: Apache
+X-frame-options: SAMEORIGIN
+Location: http://zolxq00211:8080/bug/index.cgi
+Content-Length: 0
+Content-Type: text/plain
+
+
+
+
+POST /bug/index.cgi HTTP/1.1
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Accept-encoding: gzip
+User-Agent: Mylyn/3.6.0 BugzillaConnector Eclipse/3.7.1 (org.eclipse.epp.package.java.product) HttpClient/3.1 Java/1.6.0_26 (Sun) Linux/2.6.16.60-0.42.9-smp (amd64; en_US)
+Host: localhost:8080
+Content-Length: 61
+
+Bugzilla_login=mack%40smt.zeiss.com&Bugzilla_password=dabi123
+
+
+HTTP/1.1 200 OK
+Date: Mon, 13 Feb 2012 14:56:37 GMT
+Server: Apache
+X-frame-options: SAMEORIGIN
+Set-Cookie: Bugzilla_login=1; path=/bug/; expires=Fri, 01-Jan-2038 00:00:00 GMT; HttpOnly
+Set-Cookie: Bugzilla_logincookie=vBE7D3awOt; path=/bug/; expires=Fri, 01-Jan-2038 00:00:00 GMT; HttpOnly
+Transfer-Encoding: chunked
+Content-Type: text/html; charset=UTF-8
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>Bugzilla Main Page</title>
+
+
+<link rel="Top" href="http://zolxq00211:8080/bug/">
+
+
+
+GET /bug/ HTTP/1.1
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+User-Agent: Mylyn/3.6.0 BugzillaConnector Eclipse/3.7.1 (org.eclipse.epp.package.java.product) HttpClient/3.1 Java/1.6.0_26 (Sun) Linux/2.6.16.60-0.42.9-smp (amd64; en_US)
+Host: localhost:8080
+Cookie: $Version=0; Bugzilla_login=1; $Path=/bug/; Bugzilla_logincookie=vBE7D3awOt; $Path=/bug/
+
+
+
+
+HTTP/1.1 200 OK
+Date: Mon, 13 Feb 2012 14:56:37 GMT
+Server: Apache
+X-frame-options: SAMEORIGIN
+Transfer-Encoding: chunked
+Content-Type: text/html; charset=UTF-8
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>Bugzilla Main Page</title>
+
+
+<link rel="Top" href="http://zolxq00211:8080/bug/">
+
+
+POST /bug/index.cgi HTTP/1.1
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Accept-encoding: gzip
+User-Agent: Mylyn/3.6.0 BugzillaConnector Eclipse/3.7.1 (org.eclipse.epp.package.java.product) HttpClient/3.1 Java/1.6.0_26 (Sun) Linux/2.6.16.60-0.42.9-smp (amd64; en_US)
+Host: localhost:8080
+Content-Length: 61
+
+Bugzilla_login=mack%40smt.zeiss.com&Bugzilla_password=dabi123
+
+HTTP/1.1 200 OK
+Date: Mon, 13 Feb 2012 15:00:25 GMT
+Server: Apache
+X-frame-options: SAMEORIGIN
+Set-Cookie: Bugzilla_login=1; path=/bug/; expires=Fri, 01-Jan-2038 00:00:00 GMT; HttpOnly
+Set-Cookie: Bugzilla_logincookie=ix3Z9rWP8g; path=/bug/; expires=Fri, 01-Jan-2038 00:00:00 GMT; HttpOnly
+Transfer-Encoding: chunked
+Content-Type: text/html; charset=UTF-8
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>Bugzilla Main Page</title>
+
+
+<link rel="Top" href="http://zolxq00211:8080/bug/">
+
+
+GET /bug/config.cgi?ctype=rdf HTTP/1.1
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Accept-encoding: gzip
+User-Agent: Mylyn/3.6.0 BugzillaConnector Eclipse/3.7.1 (org.eclipse.epp.package.java.product) HttpClient/3.1 Java/1.6.0_26 (Sun) Linux/2.6.16.60-0.42.9-smp (amd64; en_US)
+Host: localhost:8080
+Cookie: $Version=0; Bugzilla_login=1; $Path=/bug/; Bugzilla_logincookie=ix3Z9rWP8g; $Path=/bug/
+
+
+
+HTTP/1.1 200 OK
+Date: Mon, 13 Feb 2012 15:00:25 GMT
+Server: Apache
+Etag: EVFF6l884tOnBPhj0NrQHQ
+X-frame-options: SAMEORIGIN
+Transfer-Encoding: chunked
+Content-Type: application/rdf+xml; charset=UTF-8
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Note: this interface is experimental and under development.
+   - We may and probably will make breaking changes to it in the future. -->
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:bz="http://www.bugzilla.org/rdf#">
+
+
+POST /bug/buglist.cgi HTTP/1.1
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Accept-encoding: gzip
+User-Agent: Mylyn/3.6.0 BugzillaConnector Eclipse/3.7.1 (org.eclipse.epp.package.java.product) HttpClient/3.1 Java/1.6.0_26 (Sun) Linux/2.6.16.60-0.42.9-smp (amd64; en_US)
+Host: localhost:8080
+Cookie: $Version=0; Bugzilla_login=1; $Path=/bug/; Bugzilla_logincookie=ix3Z9rWP8g; $Path=/bug/
+Content-Length: 236
+
+short_desc_type=allwordssubstr&short_desc=&product=Lensmodel+Wrapper&component=lmw&longdesc_type=allwordssubstr&long_desc_type=allwordssubstr&long_desc=&status_whiteboard_type=allwordssubstr&status_whiteboard=&order=Importance&ctype=rdf
+
+HTTP/1.1 302 Found
+Date: Mon, 13 Feb 2012 15:06:31 GMT
+Server: Apache
+X-frame-options: SAMEORIGIN
+Location: http://localhost:8080/bug/buglist.cgi?ctype=rdf&component=lmw&order=Importance&list_id=28&product=Lensmodel%20Wrapper&longdesc_type=allwordssubstr
+Content-Length: 0
+Content-Type: text/plain
+
+
+GET /bug/buglist.cgi?ctype=rdf&component=lmw&order=Importance&list_id=28&product=Lensmodel%20Wrapper&longdesc_type=allwordssubstr HTTP/1.1
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Accept-encoding: gzip
+User-Agent: Mylyn/3.6.0 BugzillaConnector Eclipse/3.7.1 (org.eclipse.epp.package.java.product) HttpClient/3.1 Java/1.6.0_26 (Sun) Linux/2.6.16.60-0.42.9-smp (amd64; en_US)
+Host: localhost:8080
+Cookie: $Version=0; Bugzilla_login=1; $Path=/bug/; Bugzilla_logincookie=ix3Z9rWP8g; $Path=/bug/
+
+
+HTTP/1.1 200 OK
+Date: Mon, 13 Feb 2012 15:06:31 GMT
+Server: Apache
+X-frame-options: SAMEORIGIN
+Content-disposition: inline; filename="bugs-2012-02-13.rdf"
+Transfer-Encoding: chunked
+Content-Type: application/rdf+xml; charset=UTF-8
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  -->
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:bz="http://www.bugzilla.org/rdf#"
+     xmlns:nc="http://home.netscape.com/NC-rdf#">
+
+
+POST /bug/show_bug.cgi HTTP/1.1
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Accept-encoding: gzip
+User-Agent: Mylyn/3.6.0 BugzillaConnector Eclipse/3.7.1 (org.eclipse.epp.package.java.product) HttpClient/3.1 Java/1.6.0_26 (Sun) Linux/2.6.16.60-0.42.9-smp (amd64; en_US)
+Host: localhost:8080
+Cookie: $Version=0; Bugzilla_login=1; $Path=/bug/; Bugzilla_logincookie=ix3Z9rWP8g; $Path=/bug/
+Content-Length: 47
+
+id=2&id=1&ctype=xml&excludefield=attachmentdata
+
+HTTP/1.1 200 OK
+Date: Mon, 13 Feb 2012 15:06:32 GMT
+Server: Apache
+X-frame-options: SAMEORIGIN
+Transfer-Encoding: chunked
+Content-Type: application/xml; charset=UTF-8
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE bugzilla SYSTEM "http://zolxq00211:8080/bug/bugzilla.dtd">
+
+<bugzilla version="4.0.4"
+          urlbase="http://zolxq00211:8080/bug/"
+          
+          maintainer="mack@smt.zeiss.com"
+          exporter="mack@smt.zeiss.com"
+>
+
+POST /bug/process_bug.cgi HTTP/1.1
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Accept-encoding: gzip
+User-Agent: Mylyn/3.6.0 BugzillaConnector Eclipse/3.7.1 (org.eclipse.epp.package.java.product) HttpClient/3.1 Java/1.6.0_26 (Sun) Linux/2.6.16.60-0.42.9-smp (amd64; en_US)
+Host: localhost:8080
+Cookie: $Version=0; Bugzilla_login=1; $Path=/bug/; Bugzilla_logincookie=ix3Z9rWP8g; $Path=/bug/
+Content-Length: 797
+
+long_desc=dfs&see_also=&delta_ts=2012-02-13+14%3A02%3A02+%2B0100&
+cclist_accessible=1&dup_id=&everconfirmed=1&set_default_assignee=0&
+resolution=&bug_id=2&version=unspecified&id=2&op_sys=Linux&
+token=1329145772-b9ce577badfc477517ebaa5911cb8272&component=lmw&
+reporter_accessible=1&priority=High&qa_contact=&blocked=&reporter_name=R&
+resolutionInput=FIXED&classification_id=1&dependson=&keywords=&
+bug_status=IN_PROGRESS&alias=&actual_time=0.00&bug_file_loc=&
+new_comment=xy&remaining_time=0.00&bug_severity=enhancement&
+short_desc=Test2&assigned_to=mack%40smt.zeiss.com&product=Lensmodel+Wrapper&
+estimated_time=0.00&form_name=process_bug&status_whiteboard=&
+classification=Unclassified&longdesclength=1&exporter=mack%40smt.zeiss.com&
+comment=xy&assigned_to_name=R&deadline=&work_time=&rep_platform=PC&newcc=
+
+HTTP/1.1 200 OK
+Date: Mon, 13 Feb 2012 15:09:52 GMT
+Server: Apache
+X-frame-options: SAMEORIGIN
+Transfer-Encoding: chunked
+Content-Type: text/html; charset=UTF-8
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>Bug 2
+    processed</title>
+
+
+<link rel="Top" href="http://zolxq00211:8080/bug/">
+
+POST /bug/show_bug.cgi HTTP/1.1
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Accept-encoding: gzip
+User-Agent: Mylyn/3.6.0 BugzillaConnector Eclipse/3.7.1 (org.eclipse.epp.package.java.product) HttpClient/3.1 Java/1.6.0_26 (Sun) Linux/2.6.16.60-0.42.9-smp (amd64; en_US)
+Host: localhost:8080
+Cookie: $Version=0; Bugzilla_login=1; $Path=/bug/; Bugzilla_logincookie=ix3Z9rWP8g; $Path=/bug/
+Content-Length: 42
+
+id=2&ctype=xml&excludefield=attachmentdata
+
+HTTP/1.1 200 OK
+Date: Mon, 13 Feb 2012 15:09:53 GMT
+Server: Apache
+X-frame-options: SAMEORIGIN
+Transfer-Encoding: chunked
+Content-Type: application/xml; charset=UTF-8
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE bugzilla SYSTEM "http://zolxq00211:8080/bug/bugzilla.dtd">
+
+<bugzilla version="4.0.4"
+          urlbase="http://zolxq00211:8080/bug/"
+          
+          maintainer="mack@smt.zeiss.com"
+          exporter="mack@smt.zeiss.com"
+>
+
+HEAD /bug/config.cgi?ctype=rdf HTTP/1.1
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+User-Agent: Mylyn/3.6.0 BugzillaConnector Eclipse/3.7.1 (org.eclipse.epp.package.java.product) HttpClient/3.1 Java/1.6.0_26 (Sun) Linux/2.6.16.60-0.42.9-smp (amd64; en_US)
+Host: localhost:8080
+Cookie: $Version=0; Bugzilla_login=1; $Path=/bug/; Bugzilla_logincookie=ix3Z9rWP8g; $Path=/bug/
+
+HTTP/1.1 200 OK
+Date: Mon, 13 Feb 2012 15:09:54 GMT
+Server: Apache
+Etag: EVFF6l884tOnBPhj0NrQHQ
+X-frame-options: SAMEORIGIN
+Content-Type: application/rdf+xml; charset=UTF-8
+
+
+POST /bug/buglist.cgi HTTP/1.1
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Accept-encoding: gzip
+User-Agent: Mylyn/3.6.0 BugzillaConnector Eclipse/3.7.1 (org.eclipse.epp.package.java.product) HttpClient/3.1 Java/1.6.0_26 (Sun) Linux/2.6.16.60-0.42.9-smp (amd64; en_US)
+Host: localhost:8080
+Cookie: $Version=0; Bugzilla_login=1; $Path=/bug/
+Cookie: $Version=0; Bugzilla_logincookie=cvgFjYG5c0; $Path=/bug/
+Content-Length: 105
+
+query_format=advanced&chfieldfrom=2012-02-07+11%3A08%3A41+%2B0100&chfieldto=Now&bug_id=2%2C1%2C&ctype=rdf
+
+HTTP/1.1 302 Found
+Date: Mon, 13 Feb 2012 15:09:55 GMT
+Server: Apache
+X-frame-options: SAMEORIGIN
+Location: http://localhost:8080/bug/buglist.cgi?ctype=rdf&chfieldto=Now&query_format=advanced&chfieldfrom=2012-02-07%2011%3A08%3A41%20%2B0100&list_id=29&bug_id=2%2C1%2C
+Content-Length: 0
+Content-Type: text/plain
+
+
+
