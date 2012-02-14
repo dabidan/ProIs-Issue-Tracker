@@ -1,0 +1,1695 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en"><head>
+
+  
+    <title>Bug 16134
+    processed</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://landfill.bugzilla.org/4AG7aCX8My/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree" href="https://landfill.bugzilla.org/4AG7aCX8My/showdependencytree.cgi?id=16134&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph" href="https://landfill.bugzilla.org/4AG7aCX8My/showdependencygraph.cgi?id=16134">
+
+      <link rel="Show" title="Bug Activity" href="https://landfill.bugzilla.org/4AG7aCX8My/show_activity.cgi?id=16134">
+      <link rel="Show" title="Printer-Friendly Version" href="https://landfill.bugzilla.org/4AG7aCX8My/show_bug.cgi?format=multiple&amp;id=16134">
+
+
+  
+    <link rel="Saved&nbsp;Searches" title="My Bugs" href="https://landfill.bugzilla.org/4AG7aCX8My/buglist.cgi?resolution=---&amp;emailassigned_to1=1&amp;emailreporter1=1&amp;emailtype1=exact&amp;email1=dabi%40blazemail.com">
+
+
+   <link rel="Administration" title="Parameters" href="https://landfill.bugzilla.org/4AG7aCX8My/editparams.cgi"><link rel="Administration" title="Users" href="https://landfill.bugzilla.org/4AG7aCX8My/editusers.cgi"><link rel="Administration" title="Products" href="https://landfill.bugzilla.org/4AG7aCX8My/editproducts.cgi"><link rel="Administration" title="Flag Types" href="https://landfill.bugzilla.org/4AG7aCX8My/editflagtypes.cgi"><link rel="Administration" title="Groups" href="https://landfill.bugzilla.org/4AG7aCX8My/editgroups.cgi"><link rel="Administration" title="Keywords" href="https://landfill.bugzilla.org/4AG7aCX8My/editkeywords.cgi"><link rel="Administration" title="Whining" href="https://landfill.bugzilla.org/4AG7aCX8My/editwhines.cgi"><link rel="Administration" title="Sanity Check" href="https://landfill.bugzilla.org/4AG7aCX8My/sanitycheck.cgi">
+
+
+
+    
+    
+    <link href="process_bug.cgi-Dateien/global.css" rel="alternate stylesheet" title="Classic"><link href="process_bug.cgi-Dateien/autocomplete.css" rel="stylesheet" type="text/css"><link href="process_bug.cgi-Dateien/calendar.css" rel="stylesheet" type="text/css"><link href="process_bug.cgi-Dateien/global.css" rel="stylesheet" type="text/css"><link href="process_bug.cgi-Dateien/show_bug.css" rel="stylesheet" type="text/css"><!--[if lte IE 7]>
+      
+
+
+
+  <link href="skins/standard/IE-fixes.css?1328889968" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="process_bug.cgi-Dateien/global_002.css" rel="stylesheet" type="text/css" title="Dusk">
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="process_bug.cgi-Dateien/yahoo-dom-event.js"></script><script type="text/javascript" src="process_bug.cgi-Dateien/cookie-min.js"></script><script type="text/javascript" src="process_bug.cgi-Dateien/datasource-min.js"></script><script type="text/javascript" src="process_bug.cgi-Dateien/connection-min.js"></script><script type="text/javascript" src="process_bug.cgi-Dateien/json-min.js"></script><script type="text/javascript" src="process_bug.cgi-Dateien/autocomplete-min.js"></script><script type="text/javascript" src="process_bug.cgi-Dateien/calendar-min.js"></script><script type="text/javascript" src="process_bug.cgi-Dateien/global.js"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/4AG7aCX8My\/',
+                maxusermatches: 1000
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if( !document.location.href.match(/show_bug\.cgi/) && history && history.replaceState ) {
+      history.replaceState( null, 
+                         "Bug 16134 – Feeling Ill",  
+                         "show_bug.cgi?id=16134" );
+      document.title = "Bug 16134 – Feeling Ill";
+    }
+    // -->
+    </script>
+<script type="text/javascript" src="process_bug.cgi-Dateien/util.js"></script><script type="text/javascript" src="process_bug.cgi-Dateien/field.js"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="https://landfill.bugzilla.org/4AG7aCX8My/search_plugin.cgi">
+    <link rel="shortcut icon" href="https://landfill.bugzilla.org/4AG7aCX8My/images/favicon.ico">
+  </head><body onload="" class="landfill-bugzilla-org-4AG7aCX8My bz_bug bz_status_CONFIRMED bz_product_MyOwnBadSelf bz_component_comp2 bz_bug_16134 yui-skin-sam">
+
+
+
+<div id="header">
+<div id="banner">
+  </div>
+
+<table id="titles" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr>
+    <td id="title">
+      <p>Bugzilla – Bug&nbsp;16134</p>
+    </td>
+
+    <td id="subtitle">
+      <p class="subheader">Feeling Ill</p>
+    </td>
+
+    <td id="information">
+      <p class="header_addl_info">Last modified: 2012-02-13 12:32:49 PST</p>
+    </td>
+</tr>
+</tbody></table>
+
+<table id="lang_links_container" cellpadding="0" cellspacing="0"><tbody><tr><td>
+</td></tr></tbody></table>
+<ul class="links">
+  <li><a href="https://landfill.bugzilla.org/4AG7aCX8My/">Home</a></li>
+  <li><span class="separator">| </span><a href="https://landfill.bugzilla.org/4AG7aCX8My/enter_bug.cgi">New</a></li>
+  <li><span class="separator">| </span><a href="https://landfill.bugzilla.org/4AG7aCX8My/describecomponents.cgi">Browse</a></li>
+  <li><span class="separator">| </span><a href="https://landfill.bugzilla.org/4AG7aCX8My/query.cgi">Search</a></li>
+
+  <li class="form">
+    <span class="separator">| </span>
+    <form action="buglist.cgi" method="get" onsubmit="if (this.quicksearch.value == '')
+                  { alert('Please enter one or more search terms first.');
+                    return false; } return true;">
+    <input class="txt" id="quicksearch_top" name="quicksearch" title="Quick Search" type="text">
+    <input class="btn" value="Search" id="find_top" type="submit"></form>
+  <a href="https://landfill.bugzilla.org/4AG7aCX8My/page.cgi?id=quicksearch.html" title="Quicksearch Help">[?]</a></li>
+
+  <li><span class="separator">| </span><a href="https://landfill.bugzilla.org/4AG7aCX8My/report.cgi">Reports</a></li>
+
+  <li>
+      <span class="separator">| </span>
+        <a href="https://landfill.bugzilla.org/4AG7aCX8My/request.cgi?requester=dabi%40blazemail.com&amp;requestee=dabi%40blazemail.com&amp;do_union=1&amp;group=type&amp;action=queue">My Requests</a></li>
+
+    <li><span class="separator">| </span><a href="https://landfill.bugzilla.org/4AG7aCX8My/userprefs.cgi">Preferences</a></li>
+      <li><span class="separator">| </span><a href="https://landfill.bugzilla.org/4AG7aCX8My/admin.cgi">Administration</a></li>
+<li>
+        <span class="separator">| </span>
+        <a href="https://landfill.bugzilla.org/4AG7aCX8My/docs/en/html/bug_page.html" target="_blank">Help</a>
+      </li>
+
+    <li>
+      <span class="separator">| </span>
+        <a href="https://landfill.bugzilla.org/4AG7aCX8My/index.cgi?logout=1">Log&nbsp;out</a>
+        dabi@blazemail.com</li>
+</ul>
+</div> 
+
+<div id="bugzilla-body">
+
+
+
+
+
+<dl>
+  <dt>Changes submitted for <a class="bz_bug_link 
+          bz_status_CONFIRMED " title="CONFIRMED --- - Feeling Ill" href="https://landfill.bugzilla.org/4AG7aCX8My/show_bug.cgi?id=16134">bug 16134</a></dt>
+  <dd><dl><dt>Email sent to:</dt>
+  <dd>
+      no one
+  </dd>
+<dt>Excluding:</dt>
+  <dd>
+      
+        <code>tara@tequilarista.org</code>, 
+        <code>dabi@blazemail.com</code>
+  </dd>
+</dl>
+    
+  </dd>
+</dl><div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+  <!--
+  
+  /* Outputs a link to call replyToComment(); used to reduce HTML output */
+  function addReplyLink(id, real_id) {
+      /* XXX this should really be updated to use the DOM Core's
+       * createElement, but finding a container isn't trivial.
+       */
+        document.write('[<a href="#add_comment" onclick="replyToComment(' + 
+                       id + ',' + real_id + '); return false;">reply<' + '/a>]');
+  }
+
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id) {
+      var prefix = "(In reply to comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      textarea.value += replytext;
+
+      textarea.focus();
+  }
+
+  if (typeof Node == 'undefined') {
+      /* MSIE doesn't define Node, so provide a compatibility object */
+      window.Node = {
+          TEXT_NODE: 3,
+          ENTITY_REFERENCE_NODE: 5
+      };
+  }
+
+  /* Concatenates all text from element's childNodes. This is used
+   * instead of innerHTML because we want the actual text (and
+   * innerText is non-standard).
+   */
+  function getText(element) {
+      var child, text = "";
+      for (var i=0; i < element.childNodes.length; i++) {
+          child = element.childNodes[i];
+          var type = child.nodeType;
+          if (type == Node.TEXT_NODE || type == Node.ENTITY_REFERENCE_NODE) {
+              text += child.nodeValue;
+          } else {
+              /* recurse into nodes of other types */
+              text += getText(child);
+          }
+      }
+      return text;
+  }
+
+  var fRemainingTime = 0.00; // holds the original value
+  function adjustRemainingTime() {
+      // subtracts time spent from remaining time
+      var new_time;
+
+      // prevent negative values if work_time > fRemainingTime
+      new_time =
+          Math.max(fRemainingTime - document.changeform.work_time.value, 0.0);
+      // get upto 2 decimal places
+      document.changeform.remaining_time.value =
+          Math.round(new_time * 100)/100;
+  }
+
+  function updateRemainingTime() {
+      // if the remaining time is changed manually, update fRemainingTime
+      fRemainingTime = document.changeform.remaining_time.value;
+  }
+
+
+  /* Index all classifications so we can keep track of the classification
+   * for the selected product, which could control field visibility.
+   */
+  var all_classifications = new Array(5);
+      all_classifications['FoodReplicator'] = 'Unclassified';
+      all_classifications['MyOwnBadSelf'] = 'Mercury';
+      all_classifications['Sam\'s Widget'] = 'Widgets';
+      all_classifications['WorldControl'] = 'Mercury';
+      all_classifications['Ѕpїdєr Séçretíøns'] = 'Unclassified';
+
+  //-->
+  </script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input name="delta_ts" value="2012-02-13 12:32:49" type="hidden">
+  <input name="longdesclength" value="1" type="hidden">
+  <input name="id" value="16134" type="hidden">
+  <input name="token" value="1329165238-fbf67f42e7f65942db1835577cc4c9f3" type="hidden">
+<div class="bz_alias_short_desc_container edit_form"><div class="knob-buttons">
+      <input value="Save Changes" id="commit_top" type="submit">
+    </div>
+     <a href="https://landfill.bugzilla.org/4AG7aCX8My/show_bug.cgi?id=16134"><b>Bug&nbsp;16134</b></a> -<span id="summary_alias_container"> 
+      <span id="short_desc_nonedit_display">Feeling Ill</span>
+        <small class="editme">(<a href="#" id="editme_action">edit</a>)</small>
+     </span>
+  
+       
+    <div class="bz_default_hidden" id="summary_alias_input">
+      <table id="summary">  
+        
+        <tbody><tr>
+          <td>
+            <label accesskey="s" for="short_desc"><u>S</u>ummary</label>:
+          </td>
+          <td><input id="short_desc" name="short_desc" class="text_input" value="Feeling Ill" size="80" maxlength="255" spellcheck="true">
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Feeling Ill', '');
+  </script>
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tbody><tr>
+    <td class="field_label">
+      <b><a href="https://landfill.bugzilla.org/4AG7aCX8My/page.cgi?id=fields.html#status">Status</a></b>:
+    </td>
+    <td id="bz_field_status">
+      <span id="static_bug_status">CONFIRMED
+          (<a href="#add_comment" onclick="window.setTimeout(function() { document.getElementById('bug_status').focus(); }, 10)">edit</a>)
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label " id="field_label_product">
+
+    <label for="product">
+
+  <a title="Bugs are categorised into Products and Components." class="field_help_link" href="https://landfill.bugzilla.org/4AG7aCX8My/describecomponents.cgi">Product:</a>
+</label>
+</th>
+  <td class="field_value " id="field_container_product">
+        <select id="product" name="product">
+            <option value="FoodReplicator" id="v2_product">FoodReplicator</option>
+            <option value="MyOwnBadSelf" id="v3_product" selected="selected">MyOwnBadSelf</option>
+            <option value="Sam's Widget" id="v19_product">Sam's Widget</option>
+            <option value="WorldControl" id="v1_product">WorldControl</option>
+            <option value="Ѕpїdєr Séçretíøns" id="v4_product">Ѕpїdєr Séçretíøns</option>
+        </select>
+        
+
+        <script type="text/javascript">
+        <!--
+          initHidingOptionsForIE('product');
+          
+        //-->
+        </script>
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+    <label for="classification">
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="https://landfill.bugzilla.org/4AG7aCX8My/page.cgi?id=fields.html#classification">Classification:</a>
+</label>
+</th>
+  <td class="field_value " id="field_container_classification">
+        <select id="classification" name="classification">
+            <option value="Unclassified" id="v1_classification">Unclassified</option>
+            <option value="Widgets" id="v3_classification">Widgets</option>
+            <option value="Mercury" id="v2_classification" selected="selected">Mercury</option>
+        </select>
+        
+
+        <script type="text/javascript">
+        <!--
+          initHidingOptionsForIE('classification');
+          YAHOO.util.Event.on('product', 'change', setClassification);
+        //-->
+        </script>
+</td>
+    </tr>
+        
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+    <label for="component">
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="https://landfill.bugzilla.org/4AG7aCX8My/describecomponents.cgi?product=MyOwnBadSelf">Component:</a>
+</label>
+</th>
+  <td class="field_value " id="field_container_component">
+        <select id="component" name="component">
+            <option value="Comp1" id="v8_component">Comp1</option>
+            <option value="comp2" id="v9_component" selected="selected">comp2</option>
+        </select>
+        
+
+        <script type="text/javascript">
+        <!--
+          initHidingOptionsForIE('component');
+          
+        //-->
+        </script>
+</td>
+    </tr>
+    <tr>
+      <td class="field_label">
+        <label for="version"><b>Version</b></label>:
+      </td>
+<td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr>
+      <td class="field_label">
+        <label for="rep_platform" accesskey="h"><b>Platform</b></label>:
+      </td>
+      <td class="field_value"><select id="rep_platform" name="rep_platform">
+            <option value="All" id="v1_rep_platform">All</option>
+            <option value="DEC" id="v2_rep_platform">DEC</option>
+            <option value="HP" id="v3_rep_platform">HP</option>
+            <option value="Macintosh" id="v4_rep_platform">Macintosh</option>
+            <option value="PC" id="v5_rep_platform" selected="selected">PC</option>
+            <option value="SGI" id="v6_rep_platform">SGI</option>
+            <option value="Sun" id="v7_rep_platform">Sun</option>
+            <option value="Other" id="v8_rep_platform">Other</option>
+        </select>
+        
+
+        <script type="text/javascript">
+        <!--
+          initHidingOptionsForIE('rep_platform');
+          showValueWhen('cf_drop_down',
+                  [4],
+                  'rep_platform',1);
+        //-->
+        </script>
+       <select id="op_sys" name="op_sys">
+            <option value="All" id="v1_op_sys">All</option>
+            <option value="Windows 3.1" id="v2_op_sys">Windows 3.1</option>
+            <option value="Windows 95" id="v3_op_sys">Windows 95</option>
+            <option value="Windows 98" id="v4_op_sys">Windows 98</option>
+            <option value="Windows ME" id="v5_op_sys">Windows ME</option>
+            <option value="Windows 2000" id="v6_op_sys">Windows 2000</option>
+            <option value="Windows NT" id="v7_op_sys">Windows NT</option>
+            <option value="Windows XP" id="v8_op_sys">Windows XP</option>
+            <option value="Windows Server 2003" id="v9_op_sys">Windows Server 2003</option>
+            <option value="Mac System 7" id="v10_op_sys">Mac System 7</option>
+            <option value="Mac System 7.5" id="v11_op_sys">Mac System 7.5</option>
+            <option value="Mac System 7.6.1" id="v12_op_sys">Mac System 7.6.1</option>
+            <option value="Mac System 8.0" id="v13_op_sys">Mac System 8.0</option>
+            <option value="Mac System 8.5" id="v14_op_sys">Mac System 8.5</option>
+            <option value="Mac System 8.6" id="v15_op_sys">Mac System 8.6</option>
+            <option value="Mac System 9.x" id="v16_op_sys">Mac System 9.x</option>
+            <option value="Mac OS X 10.0" id="v17_op_sys">Mac OS X 10.0</option>
+            <option value="Mac OS X 10.1" id="v18_op_sys">Mac OS X 10.1</option>
+            <option value="Mac OS X 10.2" id="v19_op_sys">Mac OS X 10.2</option>
+            <option value="Linux" id="v20_op_sys" selected="selected">Linux</option>
+            <option value="BSD/OS" id="v21_op_sys">BSD/OS</option>
+            <option value="FreeBSD" id="v22_op_sys">FreeBSD</option>
+            <option value="NetBSD" id="v23_op_sys">NetBSD</option>
+            <option value="OpenBSD" id="v24_op_sys">OpenBSD</option>
+            <option value="AIX" id="v25_op_sys">AIX</option>
+            <option value="BeOS" id="v26_op_sys">BeOS</option>
+            <option value="HP-UX" id="v27_op_sys">HP-UX</option>
+            <option value="IRIX" id="v28_op_sys">IRIX</option>
+            <option value="Neutrino" id="v29_op_sys">Neutrino</option>
+            <option value="OpenVMS" id="v30_op_sys">OpenVMS</option>
+            <option value="OS/2" id="v31_op_sys">OS/2</option>
+            <option value="OSF/1" id="v32_op_sys">OSF/1</option>
+            <option value="Solaris" id="v33_op_sys">Solaris</option>
+            <option value="SunOS" id="v34_op_sys">SunOS</option>
+            <option value="MáçØß" id="v36_op_sys">MáçØß</option>
+            <option value="Other" id="v35_op_sys">Other</option>
+        </select>
+        
+
+        <script type="text/javascript">
+        <!--
+          initHidingOptionsForIE('op_sys');
+          
+        //-->
+        </script>
+       <script type="text/javascript">
+         assignToDefaultOnChange(['product', 'component']);
+       </script>
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <td class="field_label">
+        <label for="priority" accesskey="i">
+          <b><a href="https://landfill.bugzilla.org/4AG7aCX8My/page.cgi?id=fields.html#importance"><u>I</u>mportance</a></b></label>:
+      </td>
+      <td><select id="priority" name="priority">
+            <option value="P1" id="v1_priority">P1</option>
+            <option value="P2" id="v2_priority">P2</option>
+            <option value="P3" id="v3_priority">P3</option>
+            <option value="P4" id="v4_priority">P4</option>
+            <option value="P5" id="v5_priority" selected="selected">P5</option>
+        </select>
+        
+
+        <script type="text/javascript">
+        <!--
+          initHidingOptionsForIE('priority');
+          showFieldWhen('cf_free_text',
+                'priority', [    'P1'
+  ]);
+        //-->
+        </script>
+       <select id="bug_severity" name="bug_severity">
+            <option value="blocker" id="v1_bug_severity">blocker</option>
+            <option value="critical" id="v2_bug_severity">critical</option>
+            <option value="major" id="v3_bug_severity">major</option>
+            <option value="normal" id="v4_bug_severity">normal</option>
+            <option value="minor" id="v5_bug_severity">minor</option>
+            <option value="trivial" id="v6_bug_severity">trivial</option>
+            <option value="enhancement" id="v7_bug_severity" selected="selected">enhancement</option>
+        </select>
+        
+
+        <script type="text/javascript">
+        <!--
+          initHidingOptionsForIE('bug_severity');
+          
+        //-->
+        </script>
+      </td>
+    </tr>            
+          
+          <tr>
+      <td class="field_label">
+        <b><a href="https://landfill.bugzilla.org/4AG7aCX8My/page.cgi?id=fields.html#assigned_to">Assigned To</a></b>:
+      </td>
+      <td>
+          <div class="" id="bz_assignee_edit_container">
+            <span><span class="vcard"><a class="email" href="mailto:tara@tequilarista.org" title="tara@tequilarista.org">tara@tequilarista.org</a>
+</span>
+              (<a href="#" id="bz_assignee_edit_action">edit</a>)
+                (<a title="Reassign to yourself" href="#" id="bz_assignee_take_action">take</a>)
+            </span>
+          </div>
+          <div class="bz_default_hidden" id="bz_assignee_input"><div id="assigned_to_autocomplete" class="bz_userfield yui-ac">  
+  <input autocomplete="off" name="assigned_to" value="tara@tequilarista.org" class="bz_userfield yui-ac-input" size="30" id="assigned_to">
+    <div class="yui-ac-container" id="assigned_to_autocomplete_container"><div style="display: none;" class="yui-ac-content"><div style="display: none;" class="yui-ac-hd"></div><div class="yui-ac-bd"><ul><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li></ul></div><div style="display: none;" class="yui-ac-ft"></div></div></div>
+    </div>  
+    <script type="text/javascript">
+      if( typeof(YAHOO.bugzilla.userAutocomplete) !== 'undefined' 
+          && YAHOO.bugzilla.userAutocomplete != null){
+        YAHOO.bugzilla.userAutocomplete.init( "assigned_to", 
+                    "assigned_to_autocomplete_container");        
+      }
+    </script>
+            <br>
+            <input id="set_default_assignee" name="set_default_assignee" value="1" type="checkbox">
+            <label style="font-weight: normal;" id="set_default_assignee_label" for="set_default_assignee">Reset Assignee to default</label>
+          </div>
+          <script type="text/javascript">
+           hideEditableField('bz_assignee_edit_container', 
+                             'bz_assignee_input', 
+                             'bz_assignee_edit_action', 
+                             'assigned_to', 
+                             'tara\x40tequilarista.org' );
+           hideEditableField('bz_assignee_edit_container',
+                             'bz_assignee_input',
+                             'bz_assignee_take_action',
+                             'assigned_to',
+                             'tara\x40tequilarista.org',
+                             'dabi\x40blazemail.com' );
+           initDefaultCheckbox('assignee');                  
+          </script>
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label " id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="https://landfill.bugzilla.org/4AG7aCX8My/page.cgi?id=fields.html#bug_file_loc">URL:</a>
+</label>
+</th>
+    <td>
+        <span class="bz_default_hidden" id="bz_url_edit_container"> 
+        (<a href="#" id="bz_url_edit_action">edit</a>)</span>
+      <span id="bz_url_input_area"><input id="bug_file_loc" name="bug_file_loc" class="text_input" size="40">
+      </span>
+        <script type="text/javascript">
+          hideEditableField('bz_url_edit_container', 
+                            'bz_url_input_area', 
+                            'bz_url_edit_action', 
+                            'bug_file_loc', 
+                            "");
+        </script>
+    </td>
+  </tr>
+  
+  
+    <tr>
+      <td class="field_label">
+        <label for="keywords" accesskey="k">
+          <b><a href="https://landfill.bugzilla.org/4AG7aCX8My/describekeywords.cgi"><u>K</u>eywords</a></b></label>:
+      </td>
+      <td class="field_value" colspan="2"><div class="yui-ac" id="keyword_container">
+         <input autocomplete="off" id="keywords" size="40" class="text_input yui-ac-input" name="keywords" type="text">
+         <div class="yui-ac-container" id="keyword_autocomplete"><div style="display: none;" class="yui-ac-content"><div style="display: none;" class="yui-ac-hd"></div><div class="yui-ac-bd"><ul><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li></ul></div><div style="display: none;" class="yui-ac-ft"></div></div></div>
+       </div>
+       <script type="text/javascript" defer="defer">
+         YAHOO.bugzilla.keyword_array = ["funny","KeyMe","KeyMe+","KeyMe-","stupid"];
+         YAHOO.bugzilla.keywordAutocomplete.init('keywords', 
+                                                 'keyword_autocomplete');
+       </script>
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="https://landfill.bugzilla.org/4AG7aCX8My/page.cgi?id=fields.html#dependson">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+        <input name="dependson" id="dependson" class="text_input">
+    </span>
+    
+      <span id="dependson_edit_container" class="edit_me bz_default_hidden">
+        (<a href="#" id="dependson_edit_action">edit</a>)
+      </span>
+      <script type="text/javascript">
+        hideEditableField('dependson_edit_container', 
+                          'dependson_input_area', 
+                          'dependson_edit_action', 
+                          'dependson', 
+                          '');
+      </script>
+  </td>
+  </tr>
+  
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="https://landfill.bugzilla.org/4AG7aCX8My/page.cgi?id=fields.html#blocked">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+        <input name="blocked" id="blocked" class="text_input">
+    </span>
+    
+      <span id="blocked_edit_container" class="edit_me bz_default_hidden">
+        (<a href="#" id="blocked_edit_action">edit</a>)
+      </span>
+      <script type="text/javascript">
+        hideEditableField('blocked_edit_container', 
+                          'blocked_input_area', 
+                          'blocked_edit_action', 
+                          'blocked', 
+                          '');
+      </script>
+  </td>
+  
+  </tr><tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" id="show_dependency_tree_or_graph" align="left">
+      Show dependency <a href="https://landfill.bugzilla.org/4AG7aCX8My/showdependencytree.cgi?id=16134&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="https://landfill.bugzilla.org/4AG7aCX8My/showdependencygraph.cgi?id=16134">graph</a>
+    </td>
+  </tr>
+          
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tbody><tr>
+    <td class="field_label">
+      <b>Reported</b>:
+    </td>
+    <td>2012-02-13 12:32 PST by <span class="vcard"><a class="email" href="mailto:dabi@blazemail.com" title="dabi@blazemail.com">dabi@blazemail.com</a>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <td class="field_label">
+      <b> Modified</b>:
+    </td>
+    <td>2012-02-13 12:32 PST 
+      (<a href="https://landfill.bugzilla.org/4AG7aCX8My/show_activity.cgi?id=16134">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <td class="field_label">
+        <label for="newcc" accesskey="a"><b>CC List</b>:</label>
+      </td>
+      <td>
+            <input id="addselfcc" name="addselfcc" type="checkbox">
+            <label for="addselfcc">Add me to CC list</label>
+            <br> 0 
+          users
+          <span id="cc_edit_area_showhide_container">
+            (<a href="#" id="cc_edit_area_showhide">edit</a>)
+          </span>
+        <div class="bz_default_hidden" id="cc_edit_area">
+          <br>
+            <div>
+              <div><label for="cc"><b>Add</b></label></div><div id="newcc_autocomplete" class="bz_userfield yui-ac">  
+  <input autocomplete="off" name="newcc" class="bz_userfield yui-ac-input" size="30" id="newcc">
+    <div class="yui-ac-container" id="newcc_autocomplete_container"><div style="display: none;" class="yui-ac-content"><div style="display: none;" class="yui-ac-hd"></div><div class="yui-ac-bd"><ul><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li></ul></div><div style="display: none;" class="yui-ac-ft"></div></div></div>
+    </div>  
+    <script type="text/javascript">
+      if( typeof(YAHOO.bugzilla.userAutocomplete) !== 'undefined' 
+          && YAHOO.bugzilla.userAutocomplete != null){
+        YAHOO.bugzilla.userAutocomplete.init( "newcc", 
+                    "newcc_autocomplete_container", true);        
+      }
+    </script>
+            </div>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_see_also">
+
+    <label for="see_also">
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="https://landfill.bugzilla.org/4AG7aCX8My/page.cgi?id=fields.html#see_also">See Also:</a>
+</label>
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+         <span id="container_showhide_see_also">
+           <a href="#" id="showhide_see_also">(add)</a>
+         </span>
+         <div class="bz_default_hidden" id="container_see_also">
+           <label for="see_also">
+             <strong>Add Bug URLs:</strong>
+           </label><br>
+           <input id="see_also" size="40" class="text_input" name="see_also" type="text">
+         </div>
+         <script type="text/javascript">
+             setupEditLink('see_also');
+         </script></td>
+    </tr> 
+         <tr><th class="field_label " id="field_label_cf_large_text">
+
+    <label for="cf_large_text">
+
+  <a title="A custom Large Text Box field in this installation of Bugzilla." class="field_help_link" href="https://landfill.bugzilla.org/4AG7aCX8My/page.cgi?id=fields.html#cf_large_text">Large text box:</a>
+</label>
+</th>
+  <td class="field_value " id="field_container_cf_large_text" colspan="2"><textarea name="cf_large_text" id="cf_large_text" rows="4" cols="60" onfocus="this.rows=8"></textarea></td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field" id="field_label_cf_free_text">
+
+    <label for="cf_free_text">
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="https://landfill.bugzilla.org/4AG7aCX8My/page.cgi?id=fields.html#cf_free_text">free text:</a>
+</label>
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_free_text" colspan="2">
+        <input id="cf_free_text" class="text_input" name="cf_free_text" size="40" maxlength="255"></td>
+    </tr>
+    <tr><th class="field_label " id="field_label_cf_mulitple_select">
+
+    <label for="cf_mulitple_select">
+
+  <a title="A custom Multiple-Selection Box field in this installation of Bugzilla." class="field_help_link" href="https://landfill.bugzilla.org/4AG7aCX8My/page.cgi?id=fields.html#cf_mulitple_select">A multiple-select box:</a>
+</label>
+</th>
+  <td class="field_value " id="field_container_cf_mulitple_select" colspan="2">
+        <select id="cf_mulitple_select" name="cf_mulitple_select" size="5" multiple="multiple">
+            <option value="Always Appears" id="v6_cf_mulitple_select">Always Appears</option>
+            <option value="Option 1" id="v1_cf_mulitple_select" class="bz_hidden_option" disabled="disabled">Option 1</option>
+            <option value="Option 2" id="v2_cf_mulitple_select" class="bz_hidden_option" disabled="disabled">Option 2</option>
+            <option value="Option 3" id="v3_cf_mulitple_select" class="bz_hidden_option" disabled="disabled">Option 3</option>
+            <option value="Option 4" id="v4_cf_mulitple_select" class="bz_hidden_option" disabled="disabled">Option 4</option>
+            <option value="Option 5" id="v5_cf_mulitple_select" class="bz_hidden_option" disabled="disabled">Option 5</option>
+            <option value="Also Always Appears" id="v7_cf_mulitple_select">Also Always Appears</option>
+            <option value="Third Value, Always" id="v8_cf_mulitple_select">Third Value, Always</option>
+        </select>
+        
+          <input name="defined_cf_mulitple_select" type="hidden">
+
+        <script type="text/javascript">
+        <!--
+          initHidingOptionsForIE('cf_mulitple_select');
+          
+        //-->
+        </script>
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_cf_drop_down">
+
+    <label for="cf_drop_down">
+
+  <a title="A custom Drop Down field in this installation of Bugzilla." class="field_help_link" href="https://landfill.bugzilla.org/4AG7aCX8My/page.cgi?id=fields.html#cf_drop_down">Drop Down List:</a>
+</label>
+</th>
+  <td class="field_value " id="field_container_cf_drop_down" colspan="2">
+        <select id="cf_drop_down" name="cf_drop_down">
+            <option value="---" id="v1_cf_drop_down" selected="selected">---</option>
+            <option value="Show Option 1" id="v2_cf_drop_down">Show Option 1</option>
+            <option value="Show Option 2" id="v3_cf_drop_down">Show Option 2</option>
+            <option value="Show Option 3 &amp; 4" id="v5_cf_drop_down">Show Option 3 &amp; 4</option>
+            <option value="Platform All: Show Option 5" id="v4_cf_drop_down" class="bz_hidden_option" disabled="disabled">Platform All: Show Option 5</option>
+        </select>
+        
+
+        <script type="text/javascript">
+        <!--
+          initHidingOptionsForIE('cf_drop_down');
+          showValueWhen('cf_mulitple_select',
+                  [1],
+                  'cf_drop_down',2);
+    showValueWhen('cf_mulitple_select',
+                  [2],
+                  'cf_drop_down',3);
+    showValueWhen('cf_mulitple_select',
+                  [3,4],
+                  'cf_drop_down',5);
+    showValueWhen('cf_mulitple_select',
+                  [5],
+                  'cf_drop_down',4);
+        //-->
+        </script>
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_cf_date">
+
+    <label for="cf_date">
+
+  <a title="A custom Date/Time field in this installation of Bugzilla." class="field_help_link" href="https://landfill.bugzilla.org/4AG7aCX8My/page.cgi?id=fields.html#cf_date">Date Time:</a>
+</label>
+</th>
+  <td class="field_value " id="field_container_cf_date" colspan="2">
+      <input name="cf_date" size="20" id="cf_date" onchange="updateCalendarFromField(this)">
+      <button type="button" class="calendar_button" id="button_calendar_cf_date" onclick="showCalendar('cf_date')">
+        <span>Calendar</span>
+      </button>
+
+      <div class="yui-calcontainer single" id="con_calendar_cf_date"><table class="yui-calendar y2012" id="calendar_cf_date" cellspacing="0">
+<thead>
+<tr>
+<th colspan="7" class="calhead">
+<div class="calheader">
+<a class="calnavleft" href="#">Previous Month (January 2012)</a>
+February 2012
+<a class="calnavright" href="#">Next Month (March 2012)</a>
+</div>
+</th>
+</tr>
+<tr class="calweekdayrow">
+<th class="calweekdaycell">Su</th>
+<th class="calweekdaycell">Mo</th>
+<th class="calweekdaycell">Tu</th>
+<th class="calweekdaycell">We</th>
+<th class="calweekdaycell">Th</th>
+<th class="calweekdaycell">Fr</th>
+<th class="calweekdaycell">Sa</th>
+</tr>
+</thead>
+<tbody class="m2 calbody">
+<tr class="w5">
+<td id="calendar_cf_date_cell0" class="calcell oom calcelltop calcellleft">29</td>
+<td id="calendar_cf_date_cell1" class="calcell oom calcelltop">30</td>
+<td id="calendar_cf_date_cell2" class="calcell oom calcelltop">31</td>
+<td id="calendar_cf_date_cell3" class="calcell wd3 d1 selectable calcelltop"><a href="#" class="selector">1</a></td>
+<td id="calendar_cf_date_cell4" class="calcell wd4 d2 selectable calcelltop"><a href="#" class="selector">2</a></td>
+<td id="calendar_cf_date_cell5" class="calcell wd5 d3 selectable calcelltop"><a href="#" class="selector">3</a></td>
+<td id="calendar_cf_date_cell6" class="calcell wd6 d4 selectable calcelltop calcellright"><a href="#" class="selector">4</a></td>
+</tr>
+<tr class="w6">
+<td id="calendar_cf_date_cell7" class="calcell wd0 d5 selectable calcellleft"><a href="#" class="selector">5</a></td>
+<td id="calendar_cf_date_cell8" class="calcell wd1 d6 selectable"><a href="#" class="selector">6</a></td>
+<td id="calendar_cf_date_cell9" class="calcell wd2 d7 selectable"><a href="#" class="selector">7</a></td>
+<td id="calendar_cf_date_cell10" class="calcell wd3 d8 selectable"><a href="#" class="selector">8</a></td>
+<td id="calendar_cf_date_cell11" class="calcell wd4 d9 selectable"><a href="#" class="selector">9</a></td>
+<td id="calendar_cf_date_cell12" class="calcell wd5 d10 selectable"><a href="#" class="selector">10</a></td>
+<td id="calendar_cf_date_cell13" class="calcell wd6 d11 selectable calcellright"><a href="#" class="selector">11</a></td>
+</tr>
+<tr class="w7">
+<td id="calendar_cf_date_cell14" class="calcell wd0 d12 selectable calcellleft"><a href="#" class="selector">12</a></td>
+<td id="calendar_cf_date_cell15" class="calcell wd1 d13 today selectable"><a href="#" class="selector">13</a></td>
+<td id="calendar_cf_date_cell16" class="calcell wd2 d14 selectable"><a href="#" class="selector">14</a></td>
+<td id="calendar_cf_date_cell17" class="calcell wd3 d15 selectable"><a href="#" class="selector">15</a></td>
+<td id="calendar_cf_date_cell18" class="calcell wd4 d16 selectable"><a href="#" class="selector">16</a></td>
+<td id="calendar_cf_date_cell19" class="calcell wd5 d17 selectable"><a href="#" class="selector">17</a></td>
+<td id="calendar_cf_date_cell20" class="calcell wd6 d18 selectable calcellright"><a href="#" class="selector">18</a></td>
+</tr>
+<tr class="w8">
+<td id="calendar_cf_date_cell21" class="calcell wd0 d19 selectable calcellleft"><a href="#" class="selector">19</a></td>
+<td id="calendar_cf_date_cell22" class="calcell wd1 d20 selectable"><a href="#" class="selector">20</a></td>
+<td id="calendar_cf_date_cell23" class="calcell wd2 d21 selectable"><a href="#" class="selector">21</a></td>
+<td id="calendar_cf_date_cell24" class="calcell wd3 d22 selectable"><a href="#" class="selector">22</a></td>
+<td id="calendar_cf_date_cell25" class="calcell wd4 d23 selectable"><a href="#" class="selector">23</a></td>
+<td id="calendar_cf_date_cell26" class="calcell wd5 d24 selectable"><a href="#" class="selector">24</a></td>
+<td id="calendar_cf_date_cell27" class="calcell wd6 d25 selectable calcellright"><a href="#" class="selector">25</a></td>
+</tr>
+<tr class="w9">
+<td id="calendar_cf_date_cell28" class="calcell wd0 d26 selectable calcellleft"><a href="#" class="selector">26</a></td>
+<td id="calendar_cf_date_cell29" class="calcell wd1 d27 selectable"><a href="#" class="selector">27</a></td>
+<td id="calendar_cf_date_cell30" class="calcell wd2 d28 selectable"><a href="#" class="selector">28</a></td>
+<td id="calendar_cf_date_cell31" class="calcell wd3 d29 selectable"><a href="#" class="selector">29</a></td>
+<td id="calendar_cf_date_cell32" class="calcell oom">1</td>
+<td id="calendar_cf_date_cell33" class="calcell oom">2</td>
+<td id="calendar_cf_date_cell34" class="calcell oom calcellright">3</td>
+</tr>
+<tr class="w10">
+<td id="calendar_cf_date_cell35" class="calcell oom calcellleft calcellbottom">4</td>
+<td id="calendar_cf_date_cell36" class="calcell oom calcellbottom">5</td>
+<td id="calendar_cf_date_cell37" class="calcell oom calcellbottom">6</td>
+<td id="calendar_cf_date_cell38" class="calcell oom calcellbottom">7</td>
+<td id="calendar_cf_date_cell39" class="calcell oom calcellbottom">8</td>
+<td id="calendar_cf_date_cell40" class="calcell oom calcellbottom">9</td>
+<td id="calendar_cf_date_cell41" class="calcell oom calcellright calcellbottom">10</td>
+</tr>
+</tbody>
+</table></div>
+
+      <script type="text/javascript">
+        createCalendar('cf_date')
+      </script></td>
+    </tr>
+    <tr><th class="field_label " id="field_label_cf_bug_id">
+
+    <label for="cf_bug_id">
+
+  <a title="A custom Bug ID field in this installation of Bugzilla." class="field_help_link" href="https://landfill.bugzilla.org/4AG7aCX8My/page.cgi?id=fields.html#cf_bug_id">Bug ID Field:</a>
+</label>
+</th>
+  <td class="field_value " id="field_container_cf_bug_id" colspan="2">
+        <span id="cf_bug_id_input_area">
+          <input name="cf_bug_id" id="cf_bug_id" size="7">
+
+        </span>
+
+        <span id="cf_bug_id_edit_container" class="edit_me bz_default_hidden">
+          (<a href="#" id="cf_bug_id_edit_action">edit</a>)
+        </span>
+        <script type="text/javascript">
+        hideEditableField('cf_bug_id_edit_container',
+                          'cf_bug_id_input_area',
+                          'cf_bug_id_edit_action',
+                          'cf_bug_id',
+                          "");
+        </script></td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                <tr>
+      <td class="field_label flags_label">
+        <label><b>Flags:</b></label>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td colspan="2"><script src="process_bug.cgi-Dateien/flag.js" type="text/javascript"></script>
+
+<table id="flags">
+
+  
+<tbody><tr>
+    <td>&nbsp;</td>
+    <td>
+
+      <label title="Another flag" for="flag_type-8">another‑flag</label>
+    </td>
+    <td>
+      <select id="flag_type-8" name="flag_type-8" title="Another flag" onchange="toggleRequesteeField(this);" class="flag_select flag_type-8">
+        <option selected="selected" value="X"></option>
+          <option value="?">?</option>
+          <option value="+">+</option>
+          <option value="-">-</option>
+      </select>
+    </td>
+      <td>
+          <span style="white-space: nowrap;"><div id="requestee_type-8_autocomplete" class="requestee yui-ac bz_default_hidden">  
+  <input autocomplete="off" name="requestee_type-8" class="requestee yui-ac-input" id="requestee_type-8">
+    <div class="yui-ac-container" id="requestee_type-8_autocomplete_container"><div style="display: none;" class="yui-ac-content"><div style="display: none;" class="yui-ac-hd"></div><div class="yui-ac-bd"><ul><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li></ul></div><div style="display: none;" class="yui-ac-ft"></div></div></div>
+    </div>  
+    <script type="text/javascript">
+      if( typeof(YAHOO.bugzilla.userAutocomplete) !== 'undefined' 
+          && YAHOO.bugzilla.userAutocomplete != null){
+        YAHOO.bugzilla.userAutocomplete.init( "requestee_type-8", 
+                    "requestee_type-8_autocomplete_container", true);        
+      }
+    </script>            
+            
+          </span>
+      </td>
+  </tr>
+<tr>
+    <td>&nbsp;</td>
+    <td>
+
+      <label title="Another flag" for="flag_type-9">another‑flag2</label>
+    </td>
+    <td>
+      <select id="flag_type-9" name="flag_type-9" title="Another flag" onchange="toggleRequesteeField(this);" class="flag_select flag_type-9">
+        <option selected="selected" value="X"></option>
+          <option value="?">?</option>
+          <option value="+">+</option>
+          <option value="-">-</option>
+      </select>
+    </td>
+      <td>
+          <span style="white-space: nowrap;"><div id="requestee_type-9_autocomplete" class="requestee yui-ac bz_default_hidden">  
+  <input autocomplete="off" name="requestee_type-9" class="requestee yui-ac-input" id="requestee_type-9">
+    <div class="yui-ac-container" id="requestee_type-9_autocomplete_container"><div style="display: none;" class="yui-ac-content"><div style="display: none;" class="yui-ac-hd"></div><div class="yui-ac-bd"><ul><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li></ul></div><div style="display: none;" class="yui-ac-ft"></div></div></div>
+    </div>  
+    <script type="text/javascript">
+      if( typeof(YAHOO.bugzilla.userAutocomplete) !== 'undefined' 
+          && YAHOO.bugzilla.userAutocomplete != null){
+        YAHOO.bugzilla.userAutocomplete.init( "requestee_type-9", 
+                    "requestee_type-9_autocomplete_container", true);        
+      }
+    </script>            
+            
+          </span>
+      </td>
+  </tr>
+<tr>
+    <td>&nbsp;</td>
+    <td>
+
+      <label title="Blocks the next release" for="flag_type-11">blocker</label>
+    </td>
+    <td>
+      <select id="flag_type-11" name="flag_type-11" title="Blocks the next release" onchange="toggleRequesteeField(this);" class="flag_select flag_type-11">
+        <option selected="selected" value="X"></option>
+          <option value="?">?</option>
+          <option value="+">+</option>
+          <option value="-">-</option>
+      </select>
+    </td>
+      <td>
+      </td>
+  </tr>
+<tr>
+    <td>&nbsp;</td>
+    <td>
+
+      <label title="Regression found?" for="flag_type-10">regression</label>
+    </td>
+    <td>
+      <select id="flag_type-10" name="flag_type-10" title="Regression found?" onchange="toggleRequesteeField(this);" class="flag_select flag_type-10">
+        <option selected="selected" value="X"></option>
+          <option value="?">?</option>
+          <option value="+">+</option>
+          <option value="-">-</option>
+      </select>
+    </td>
+      <td>
+      </td>
+  </tr>
+<tr>
+    <td>&nbsp;</td>
+    <td>
+
+      <label title="Ask for testing on this bug" for="flag_type-6">test</label>
+    </td>
+    <td>
+      <select id="flag_type-6" name="flag_type-6" title="Ask for testing on this bug" onchange="toggleRequesteeField(this);" class="flag_select flag_type-6">
+        <option selected="selected" value="X"></option>
+          <option value="?">?</option>
+          <option value="+">+</option>
+          <option value="-">-</option>
+      </select>
+    </td>
+      <td>
+          <span style="white-space: nowrap;"><div id="requestee_type-6_autocomplete" class="requestee yui-ac bz_default_hidden">  
+  <input autocomplete="off" name="requestee_type-6" class="requestee yui-ac-input" id="requestee_type-6">
+    <div class="yui-ac-container" id="requestee_type-6_autocomplete_container"><div style="display: none;" class="yui-ac-content"><div style="display: none;" class="yui-ac-hd"></div><div class="yui-ac-bd"><ul><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li></ul></div><div style="display: none;" class="yui-ac-ft"></div></div></div>
+    </div>  
+    <script type="text/javascript">
+      if( typeof(YAHOO.bugzilla.userAutocomplete) !== 'undefined' 
+          && YAHOO.bugzilla.userAutocomplete != null){
+        YAHOO.bugzilla.userAutocomplete.init( "requestee_type-6", 
+                    "requestee_type-6_autocomplete_container", true);        
+      }
+    </script>            
+            
+          </span>
+      </td>
+  </tr>
+<tr>
+    <td>&nbsp;</td>
+    <td>
+
+      <label title="maybe yes, maybe no" for="flag_type-12">maybe</label>
+    </td>
+    <td>
+      <select id="flag_type-12" name="flag_type-12" title="maybe yes, maybe no" onchange="toggleRequesteeField(this);" class="flag_select flag_type-12">
+        <option selected="selected" value="X"></option>
+          <option value="?">?</option>
+      </select>
+    </td>
+      <td>
+      </td>
+  </tr>
+
+  
+</tbody></table>
+      </td>
+    </tr>
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts" cellpadding="0" cellspacing="0"><tbody><tr>
+  <td><table class="bz_time_tracking_table">
+    <tbody><tr>
+      <th>
+        <label for="estimated_time">Orig. Est.</label>
+      </th>
+      <th>
+        Current Est.
+      </th>
+      <th>
+        <label for="work_time">Hours Worked</label>
+      </th>
+      <th>
+        <label for="remaining_time">Hours Left</label>
+      </th>
+      <th>
+        %Complete
+      </th>
+      <th>
+        Gain
+      </th>
+      <th>
+        <label for="deadline">Deadline</label>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <input name="estimated_time" id="estimated_time" value="0.0" size="6" maxlength="6">
+      </td>
+      <td>0.0
+      </td>
+      <td>0.0 +
+        <input name="work_time" id="work_time" value="0" size="3" maxlength="6" onchange="adjustRemainingTime();">
+      </td>
+      <td>
+        <input name="remaining_time" id="remaining_time" value="0.0" size="6" maxlength="6" onchange="updateRemainingTime();">
+      </td>
+      <td>0
+      </td>
+      <td>0.0
+      </td>
+       <td><input name="deadline" size="20" id="deadline" onchange="updateCalendarFromField(this)">
+      <button type="button" class="calendar_button" id="button_calendar_deadline" onclick="showCalendar('deadline')">
+        <span>Calendar</span>
+      </button>
+
+      <div class="yui-calcontainer single" id="con_calendar_deadline"><table class="yui-calendar y2012" id="calendar_deadline" cellspacing="0">
+<thead>
+<tr>
+<th colspan="7" class="calhead">
+<div class="calheader">
+<a class="calnavleft" href="#">Previous Month (January 2012)</a>
+February 2012
+<a class="calnavright" href="#">Next Month (March 2012)</a>
+</div>
+</th>
+</tr>
+<tr class="calweekdayrow">
+<th class="calweekdaycell">Su</th>
+<th class="calweekdaycell">Mo</th>
+<th class="calweekdaycell">Tu</th>
+<th class="calweekdaycell">We</th>
+<th class="calweekdaycell">Th</th>
+<th class="calweekdaycell">Fr</th>
+<th class="calweekdaycell">Sa</th>
+</tr>
+</thead>
+<tbody class="m2 calbody">
+<tr class="w5">
+<td id="calendar_deadline_cell0" class="calcell oom calcelltop calcellleft">29</td>
+<td id="calendar_deadline_cell1" class="calcell oom calcelltop">30</td>
+<td id="calendar_deadline_cell2" class="calcell oom calcelltop">31</td>
+<td id="calendar_deadline_cell3" class="calcell wd3 d1 selectable calcelltop"><a href="#" class="selector">1</a></td>
+<td id="calendar_deadline_cell4" class="calcell wd4 d2 selectable calcelltop"><a href="#" class="selector">2</a></td>
+<td id="calendar_deadline_cell5" class="calcell wd5 d3 selectable calcelltop"><a href="#" class="selector">3</a></td>
+<td id="calendar_deadline_cell6" class="calcell wd6 d4 selectable calcelltop calcellright"><a href="#" class="selector">4</a></td>
+</tr>
+<tr class="w6">
+<td id="calendar_deadline_cell7" class="calcell wd0 d5 selectable calcellleft"><a href="#" class="selector">5</a></td>
+<td id="calendar_deadline_cell8" class="calcell wd1 d6 selectable"><a href="#" class="selector">6</a></td>
+<td id="calendar_deadline_cell9" class="calcell wd2 d7 selectable"><a href="#" class="selector">7</a></td>
+<td id="calendar_deadline_cell10" class="calcell wd3 d8 selectable"><a href="#" class="selector">8</a></td>
+<td id="calendar_deadline_cell11" class="calcell wd4 d9 selectable"><a href="#" class="selector">9</a></td>
+<td id="calendar_deadline_cell12" class="calcell wd5 d10 selectable"><a href="#" class="selector">10</a></td>
+<td id="calendar_deadline_cell13" class="calcell wd6 d11 selectable calcellright"><a href="#" class="selector">11</a></td>
+</tr>
+<tr class="w7">
+<td id="calendar_deadline_cell14" class="calcell wd0 d12 selectable calcellleft"><a href="#" class="selector">12</a></td>
+<td id="calendar_deadline_cell15" class="calcell wd1 d13 today selectable"><a href="#" class="selector">13</a></td>
+<td id="calendar_deadline_cell16" class="calcell wd2 d14 selectable"><a href="#" class="selector">14</a></td>
+<td id="calendar_deadline_cell17" class="calcell wd3 d15 selectable"><a href="#" class="selector">15</a></td>
+<td id="calendar_deadline_cell18" class="calcell wd4 d16 selectable"><a href="#" class="selector">16</a></td>
+<td id="calendar_deadline_cell19" class="calcell wd5 d17 selectable"><a href="#" class="selector">17</a></td>
+<td id="calendar_deadline_cell20" class="calcell wd6 d18 selectable calcellright"><a href="#" class="selector">18</a></td>
+</tr>
+<tr class="w8">
+<td id="calendar_deadline_cell21" class="calcell wd0 d19 selectable calcellleft"><a href="#" class="selector">19</a></td>
+<td id="calendar_deadline_cell22" class="calcell wd1 d20 selectable"><a href="#" class="selector">20</a></td>
+<td id="calendar_deadline_cell23" class="calcell wd2 d21 selectable"><a href="#" class="selector">21</a></td>
+<td id="calendar_deadline_cell24" class="calcell wd3 d22 selectable"><a href="#" class="selector">22</a></td>
+<td id="calendar_deadline_cell25" class="calcell wd4 d23 selectable"><a href="#" class="selector">23</a></td>
+<td id="calendar_deadline_cell26" class="calcell wd5 d24 selectable"><a href="#" class="selector">24</a></td>
+<td id="calendar_deadline_cell27" class="calcell wd6 d25 selectable calcellright"><a href="#" class="selector">25</a></td>
+</tr>
+<tr class="w9">
+<td id="calendar_deadline_cell28" class="calcell wd0 d26 selectable calcellleft"><a href="#" class="selector">26</a></td>
+<td id="calendar_deadline_cell29" class="calcell wd1 d27 selectable"><a href="#" class="selector">27</a></td>
+<td id="calendar_deadline_cell30" class="calcell wd2 d28 selectable"><a href="#" class="selector">28</a></td>
+<td id="calendar_deadline_cell31" class="calcell wd3 d29 selectable"><a href="#" class="selector">29</a></td>
+<td id="calendar_deadline_cell32" class="calcell oom">1</td>
+<td id="calendar_deadline_cell33" class="calcell oom">2</td>
+<td id="calendar_deadline_cell34" class="calcell oom calcellright">3</td>
+</tr>
+<tr class="w10">
+<td id="calendar_deadline_cell35" class="calcell oom calcellleft calcellbottom">4</td>
+<td id="calendar_deadline_cell36" class="calcell oom calcellbottom">5</td>
+<td id="calendar_deadline_cell37" class="calcell oom calcellbottom">6</td>
+<td id="calendar_deadline_cell38" class="calcell oom calcellbottom">7</td>
+<td id="calendar_deadline_cell39" class="calcell oom calcellbottom">8</td>
+<td id="calendar_deadline_cell40" class="calcell oom calcellbottom">9</td>
+<td id="calendar_deadline_cell41" class="calcell oom calcellright calcellbottom">10</td>
+</tr>
+</tbody>
+</table></div>
+
+      <script type="text/javascript">
+        createCalendar('deadline')
+      </script>
+      </td>        
+    </tr>
+    <tr>
+      <td colspan="7" class="bz_summarize_time">
+        <a href="https://landfill.bugzilla.org/4AG7aCX8My/summarize_time.cgi?id=16134&amp;do_depends=1">
+        Summarize time (including time for bugs
+        blocking this bug)</a>
+      </td>
+    </tr>
+  </tbody></table>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellpadding="4" cellspacing="0">
+  <tbody><tr id="a0">
+    <th colspan="3" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="3">
+        <a href="https://landfill.bugzilla.org/4AG7aCX8My/attachment.cgi?bugid=16134&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</tbody></table>
+<br>
+<div id="add_comment" class="bz_section_additional_comments">
+      <label for="comment" accesskey="c"><b>Additional 
+        <u>C</u>omments</b></label>:
+
+
+      <!-- This table keeps the submit button aligned with the box. -->
+      <table><tbody><tr><td><textarea name="comment" id="comment" rows="10" cols="80" onfocus="this.rows=25"></textarea>
+        <br><div class="knob-buttons">
+      <input value="Save Changes" id="commit" type="submit">
+    </div>
+
+        <table id="bug_status_bottom" class="status" cellpadding="0" cellspacing="0">
+          <tbody><tr>
+            <td class="field_label">
+              <b><a href="https://landfill.bugzilla.org/4AG7aCX8My/page.cgi?id=fields.html#status">Status</a></b>:
+            </td>
+            <td><div id="status"><select id="bug_status" name="bug_status">
+            <option value="CONFIRMED" id="v4_bug_status" selected="selected">CONFIRMED</option>
+            <option value="IN_PROGRESS" id="v3_bug_status">IN_PROGRESS</option>
+            <option value="RESOLVED" id="v5_bug_status">RESOLVED</option>
+        </select>
+        
+
+        <script type="text/javascript">
+        <!--
+          initHidingOptionsForIE('bug_status');
+          
+        //-->
+        </script>
+
+    <noscript><br>resolved&nbsp;as&nbsp;</noscript>
+
+  <span class="bz_default_hidden" id="resolution_settings"><select id="resolution" name="resolution">
+            <option selected="selected" value=""></option><option value="FIXED" id="v2_resolution">FIXED</option>
+            <option value="INVALID" id="v3_resolution">INVALID</option>
+            <option value="WONTFIX" id="v4_resolution">WONTFIX</option>
+            <option value="DUPLICATE" id="v7_resolution">DUPLICATE</option>
+            <option value="WORKSFORME" id="v8_resolution">WORKSFORME</option>
+            <option value="MOVED" id="v9_resolution">MOVED</option>
+        </select>
+        
+
+        <script type="text/javascript">
+        <!--
+          initHidingOptionsForIE('resolution');
+          
+        //-->
+        </script>
+  </span>
+
+    <noscript><br> duplicate</noscript>
+    <span class="bz_default_hidden" id="duplicate_settings">of
+      <span class="bz_default_hidden" id="dup_id_container">bug 
+        (<a href="#" id="dup_id_edit_action">edit</a>)
+      </span><input id="dup_id" name="dup_id" size="6">
+    </span>
+    <div class="" id="dup_id_discoverable">
+      <a href="#" id="dup_id_discoverable_action">Mark as Duplicate</a>
+    </div>
+</div>
+
+<script type="text/javascript">
+  var close_status_array = [
+      'RESOLVED'
+  ];
+  YAHOO.util.Dom.removeClass('dup_id_discoverable', 'bz_default_hidden');
+  hideEditableField( "dup_id_container", "dup_id", 'dup_id_edit_action',
+                     'dup_id', '' )
+  showHideStatusItems( "",  ['',
+                             'CONFIRMED']);
+  YAHOO.util.Event.addListener( 'bug_status', "change", showHideStatusItems,
+                                ['',
+                                 'CONFIRMED']);
+  YAHOO.util.Event.addListener( 'resolution', "change", showDuplicateItem);
+  YAHOO.util.Event.addListener( 'dup_id_discoverable_action',
+                                'click',
+                                setResolutionToDuplicate,
+                                'RESOLVED');
+  YAHOO.util.Event.addListener( window, 'load',  showHideStatusItems,
+                              ['',
+                               'CONFIRMED'] );
+
+</script>
+            </td>
+          </tr>
+        </tbody></table>
+      </td></tr></tbody></table>
+
+    
+  </div>
+  </td>
+  <td><div class="bz_group_visibility_section">
+
+
+
+          <div id="bz_restrict_group_visibility_help">
+            <b>Only users in all of the selected groups can view this 
+              bug:</b>
+             <p class="instructions">
+               Unchecking all boxes makes this a more public bug.
+             </p>
+          </div>
+
+        <input name="defined_groups" value="Another Group" type="hidden">
+
+      <input value="Another Group" name="groups" id="group_10" type="checkbox">
+      <label for="group_10">Another group</label>
+      <br>
+
+
+
+        <input name="defined_groups" value="Landlord" type="hidden">
+
+      <input value="Landlord" name="groups" id="group_8" type="checkbox">
+      <label for="group_8">Landlords, overseers of landfill.</label>
+      <br>
+
+
+
+        <input name="defined_groups" value="TestGroup" type="hidden">
+
+      <input value="TestGroup" name="groups" id="group_9" type="checkbox">
+      <label for="group_9">Test Group</label>
+      <br>
+
+
+  </div>
+  </td>
+  </tr></tbody></table>
+
+  
+  <div id="comments"><script src="process_bug.cgi-Dateien/comments.js" type="text/javascript">
+</script>
+
+
+
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+          <span class="bz_comment_actions">
+            <script type="text/javascript"><!--
+              addReplyLink(0, 25689);
+              addCollapseLink(0); // -->
+            </script>[<a href="#add_comment" onclick="replyToComment(0,25689); return false;">reply</a>] <a href="#" class="bz_collapse_comment" id="comment_link_0" onclick="toggle_comment_display(this, 0); return false;" title="Collapse the comment.">[-]</a> 
+          </span>
+
+
+        <span class="bz_comment_number">
+          <a href="https://landfill.bugzilla.org/4AG7aCX8My/show_bug.cgi?id=16134#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user"><span class="vcard"><a class="email" href="mailto:dabi@blazemail.com" title="dabi@blazemail.com">dabi@blazemail.com</a>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+            <img src="process_bug.cgi-Dateien/favicon.png" alt="admin" title="admin - Administrators">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-02-13 12:32:49 PST
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" id="comment_text_0"></pre>
+    </div>
+  
+
+  <div class="bz_add_comment">
+    <a href="#" onclick="return goto_add_comments();">
+       Add Comment</a>
+  </div>
+
+  
+
+</td>
+<td>
+    <ul class="bz_collapse_expand_comments">
+      <li><a href="#" onclick="toggle_all_comments('collapse'); 
+                               return false;">Collapse All Comments</a></li>
+      <li><a href="#" onclick="toggle_all_comments('expand');
+                               return false;">Expand All Comments</a></li>                               
+    </ul>
+</td>
+</tr></tbody></table>
+  </div>
+        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="https://landfill.bugzilla.org/4AG7aCX8My/show_bug.cgi?format=multiple&amp;id=16134">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="https://landfill.bugzilla.org/4AG7aCX8My/show_bug.cgi?ctype=xml&amp;id=16134">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="https://landfill.bugzilla.org/4AG7aCX8My/enter_bug.cgi?cloned_bug_id=16134">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+</div>
+
+
+
+<div id="footer">
+  <div class="intro"></div>
+
+
+
+
+<ul id="useful-links">
+  <li id="links-actions"><ul class="links">
+  <li><a href="https://landfill.bugzilla.org/4AG7aCX8My/">Home</a></li>
+  <li><span class="separator">| </span><a href="https://landfill.bugzilla.org/4AG7aCX8My/enter_bug.cgi">New</a></li>
+  <li><span class="separator">| </span><a href="https://landfill.bugzilla.org/4AG7aCX8My/describecomponents.cgi">Browse</a></li>
+  <li><span class="separator">| </span><a href="https://landfill.bugzilla.org/4AG7aCX8My/query.cgi">Search</a></li>
+
+  <li class="form">
+    <span class="separator">| </span>
+    <form action="buglist.cgi" method="get" onsubmit="if (this.quicksearch.value == '')
+                  { alert('Please enter one or more search terms first.');
+                    return false; } return true;">
+    <input class="txt" id="quicksearch_bottom" name="quicksearch" title="Quick Search" type="text">
+    <input class="btn" value="Search" id="find_bottom" type="submit"></form>
+  <a href="https://landfill.bugzilla.org/4AG7aCX8My/page.cgi?id=quicksearch.html" title="Quicksearch Help">[?]</a></li>
+
+  <li><span class="separator">| </span><a href="https://landfill.bugzilla.org/4AG7aCX8My/report.cgi">Reports</a></li>
+
+  <li>
+      <span class="separator">| </span>
+        <a href="https://landfill.bugzilla.org/4AG7aCX8My/request.cgi?requester=dabi%40blazemail.com&amp;requestee=dabi%40blazemail.com&amp;do_union=1&amp;group=type&amp;action=queue">My Requests</a></li>
+
+    <li><span class="separator">| </span><a href="https://landfill.bugzilla.org/4AG7aCX8My/userprefs.cgi">Preferences</a></li>
+      <li><span class="separator">| </span><a href="https://landfill.bugzilla.org/4AG7aCX8My/admin.cgi">Administration</a></li>
+
+
+    <li>
+      <span class="separator">| </span>
+        <a href="https://landfill.bugzilla.org/4AG7aCX8My/index.cgi?logout=1">Log&nbsp;out</a>
+        dabi@blazemail.com</li>
+</ul>
+  </li>
+
+  
+    
+    <li id="links-saved">
+      <ul class="links">
+          <li><a href="https://landfill.bugzilla.org/4AG7aCX8My/buglist.cgi?resolution=---&amp;emailassigned_to1=1&amp;emailreporter1=1&amp;emailtype1=exact&amp;email1=dabi%40blazemail.com">My Bugs</a></li>
+
+      </ul>
+    </li>
+
+  
+<li id="links-special">
+    <script type="text/javascript">
+      <!--
+      function update_text() {
+        // 'lob' means list_of_bugs.
+        var lob_action = document.getElementById('lob_action');
+        var action = lob_action.options[lob_action.selectedIndex].value;
+        var text = document.getElementById('lob_direction');
+        var new_query_text = document.getElementById('lob_new_query_text');
+
+        if (action == "add") {
+          text.innerHTML = "to";
+          new_query_text.style.display = 'inline';
+        }
+        else {
+          text.innerHTML = "from";
+          new_query_text.style.display = 'none';
+        }
+      }
+
+      function manage_old_lists() {
+        var old_lists = document.getElementById('lob_oldqueryname');
+        // If there is no saved searches available, returns.
+        if (!old_lists) return;
+
+        var new_query = document.getElementById('lob_newqueryname').value;
+
+        if (new_query != "") {
+          old_lists.disabled = true;
+        }
+        else {
+          old_lists.disabled = false;
+        }
+      }
+      //-->
+    </script>
+
+    <div class="label"></div>
+    <ul class="links"><li class="form">
+      <form id="list_of_bugs" action="buglist.cgi" method="get">
+        <input name="cmdtype" value="doit" type="hidden">
+        <input name="remtype" value="asnamed" type="hidden">
+        <input name="list_of_bugs" value="1" type="hidden">
+        <input name="token" value="1329165238-e8ab469be2f1c1018ca627b99947a7e5" type="hidden">
+        <select id="lob_action" name="action" onchange="update_text();">
+          <option selected="selected" value="add">Add</option>
+        </select>
+
+          <a href="https://landfill.bugzilla.org/4AG7aCX8My/docs/en/html/query.html#individual-buglists">the named tag</a>
+
+        <span id="lob_new_query_text">
+          <input class="txt" id="lob_newqueryname" size="20" maxlength="64" name="newqueryname" onkeyup="manage_old_lists();" type="text">
+        </span>
+        <span id="lob_direction">to</span>
+        bugs
+        <input name="bug_ids" size="12" maxlength="80" type="text">
+        <input value="Commit" id="commit_list_of_bugs" type="submit">
+      </form>
+    </li></ul>
+  </li>
+
+  
+</ul>
+
+  <div class="outro"></div>
+</div>
+
+
+</body></html>

@@ -20,6 +20,9 @@ class RedirectLocation(Exception):
     def __init__(self, location):
         self.location=location
 
+def redirect_location(location):
+    raise RedirectLocation(location)
+
 class RDFResponse(object):
     mime='application/rdf+xml'
     def __init__(self, element):
@@ -48,15 +51,17 @@ class TemplateResponse(object):
         
     def __str__(self):
         temp=open(self.filename)
-        template=temp.read()
+        template=temp.read().decode('utf-8')
         temp.close()
-        return re.sub(r'{([A-Za-z0-9_]+)}',lambda x: self.values.get(x.group(1),''),template)
+        return re.sub(r'{([A-Za-z0-9_]+)}',lambda x: self.values.get(x.group(1),''),template).encode('utf-8')
 
 class MimeResponse(object):
     def __init__(self, string, mime='text/html'):
         self.string=string
         self.mime=mime
     def __str__(self):
+        if 'text/'==self.mime[:5] and isinstance(self.string,unicode):
+            return self.string.encode('utf-8') 
         return self.string
     
 class FileHandler(object):
@@ -153,6 +158,7 @@ class DynamicHTTPRequestHandler(BaseHTTPRequestHandler):
             boundary_start='--'+boundary
             boundary_end=boundary_start+'--'
             qs=self.rfile.read(int(self.headers.getheader('content-length')))
+            print qs
             st=StringIO.StringIO(qs)
             mode=1 # ignore
             header=data=None
@@ -162,7 +168,7 @@ class DynamicHTTPRequestHandler(BaseHTTPRequestHandler):
                 if sline in (boundary_start,boundary_end):
                     if mode>=3:
                         dtype, pddict = cgi.parse_header(header['content-disposition'])
-                        ctype, pcdict = cgi.parse_header(header['content-type'])
+                        ctype, pcdict = cgi.parse_header(header.get('content-type','text/plain'))
                         print dtype,pddict,ctype,pcdict,repr(data)
                         if dtype=='form-data':
                             if 'content-length' not in header:

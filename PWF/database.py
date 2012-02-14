@@ -124,6 +124,18 @@ class RowGetter(object):
             if row is None: break
             record=self.record_type(self._db,self.table_name,row[0],dict(zip(fields,row[1:])))
             yield record
+        c.close()
+
+    def select_sql(self, conditions, cond_vars):
+        c=self._db.cursor()
+        fields=self.__get_fieldnames()
+        c.execute("select _rowid_, %s from %s where %s"%(','.join(fields),self.table_name,conditions),cond_vars)
+        while True:
+            row=c.fetchone()
+            if row is None: break
+            record=self.record_type(self._db,self.table_name,row[0],dict(zip(fields,row[1:])))
+            yield record
+        c.close()
 
     def __iter__(self):
         c=self._db.cursor()
