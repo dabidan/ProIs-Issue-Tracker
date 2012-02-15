@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  -->
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:bz="http://www.bugzilla.org/rdf#"
+     xmlns:nc="http://home.netscape.com/NC-rdf#">
+
+<bz:result rdf:about="https://landfill.bugzilla.org/4AG7aCX8My/buglist.cgi?bug_id=1324&amp;ctype=rdf&amp;query_format=advanced">
+  <bz:installation rdf:resource="https://landfill.bugzilla.org/4AG7aCX8My/" />
+  <bz:query_timestamp>2012-02-14 12:22:27 PST</bz:query_timestamp>
+  <bz:bugs>
+    <Seq>
+      <li>
+        
+        <bz:bug rdf:about="https://landfill.bugzilla.org/4AG7aCX8My/show_bug.cgi?id=1324">
+          
+          <bz:id nc:parseType="Integer">1324</bz:id>
+        
+          <bz:product>MyOwnBadSelf</bz:product>
+          <bz:component>comp2</bz:component>
+          <bz:assigned_to>tara</bz:assigned_to>
+          <bz:bug_status>CONFIRMED</bz:bug_status>
+          <bz:resolution></bz:resolution>
+          <bz:short_desc>a test Bug</bz:short_desc>
+          <bz:changeddate>2003-07-02</bz:changeddate>
+        
+        </bz:bug>
+      
+      </li>
+
+
+    </Seq>
+
+  </bz:bugs>
+
+</bz:result>
+
+</RDF>

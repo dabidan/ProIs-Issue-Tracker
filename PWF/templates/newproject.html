@@ -15,7 +15,24 @@
 
     <!-- Le styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
-
+<style>
+.dropdown-menu {
+padding:4px
+}
+.dropdown-menu .pagination li.disabled i {
+background-image: url(/img/glyphicons-halflings-gray.png);
+}
+.dropdown-menu .pagination a {
+padding:2px;
+height:100px;
+clear:none;
+display:inline
+}
+.dropdown-menu .pagination img{
+width:100px;min-width:100px;max-width:100px;
+display:block;
+}
+</style>
 </head>
 <body>
 
@@ -55,14 +72,30 @@
             <label class="control-label" for="descr">Description</label>
 			<div class="controls input-prepend">
               <span class="add-on"><i class="icon-edit"></i></span>
-	          <textarea class="input-xlarge" id="descr" name="descr" rows="3">{descr}</textarea>
+	          <textarea class="input-xxlarge" id="descr" name="descr" rows="8">{descr}</textarea>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="icon">Icon</label>
 			<div class="controls input-prepend">
               <span class="add-on"><i class="icon-picture"></i></span>
-              <input class="input-xlarge" name="icon" id="icon" type="file" maxlength="10000000" accept="image/*">
+              <input name="icon_nr" id="icon_nr" type="hidden" value="">
+   <div class="btn-group">
+   <a class="btn" href="#" data-toggle="dropdown" id="drop"><img src='default2.png'></a>
+   <div class="dropdown-menu" style="width:570px;max-width:570px">
+              <div class="pagination" style="width:570px;max-width:570px;height:100px"><ul>
+              <li class="disabled"><a id='icon_prev'><i class="icon-chevron-left"></i></a></li>
+              <li><a id='icon_0'><img src=''></a></li>
+              <li><a id='icon_1'><img src=''></a></li>
+              <li><a id='icon_2'><img src=''></a></li>
+              <li><a id='icon_3'><img src=''></a></li>
+              <li><a id='icon_4'><img src=''></a></li>
+              <li><a id='icon_next'><i class="icon-chevron-right"></i></a></li>
+              </ul></div>
+              <!--<li><input class="input-xlarge" name="icon" id="icon" type="file" maxlength="10000000" accept="image/*"></li>-->
+              <li><a class='btn btn-success' id='icon-upload'><i class="icon-upload icon-white"></i> upload image</a></li>
+   </div>
+              </div>
             </div>
           </div>
           
@@ -74,8 +107,11 @@
     </div>
     <div class="span4">
       <h3>New Project</h3>
-      <p>Create a new project with a short description.
-      </p>
+      <p>Create a new project. The project ID is a short name containing only
+      of letters and numbers. The project name should identify the contents
+      clearly. The first paragraph of the description is also shown on the
+      overview page. It should be short and informative enough, to get
+      an idea of the project.</p>
     </div>
   </div>
 	
@@ -83,7 +119,50 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script src="js/ajaxupload.js"></script>
     <script>
+    imglst=Array({imglist})
+    imgpos=0;
+    keepOpen=true;
+    function update(){
+        if(imgpos<=0) {
+            $('#icon_prev').parent().addClass('disabled');
+            imgpos=0;
+        } else {
+            $('#icon_prev').parent().removeClass('disabled');
+        }
+        if(imgpos>=imglst.length-5) {
+            $('#icon_next').parent().addClass('disabled');
+        } else {
+            $('#icon_next').parent().removeClass('disabled');
+        }
+        for(nr=0;nr<5;nr++) {
+          if(imgpos+nr<imglst.length) { $('#icon_'+nr).parent().removeClass('disabled'); }
+          else { $('#icon_'+nr).parent().addClass('disabled'); }
+          $('#icon_'+nr+' img').attr('src',(imgpos+nr<imglst.length)?'/mylyn/attachment.cgi?id='+imglst[imgpos+nr]:'');
+        }
+    }
+	$('#icon_prev').click(function(event){imgpos=imgpos-5;update();event.stopImmediatePropagation();})    
+	$('#icon_next').click(function(event){imgpos=imgpos+5;update();event.stopImmediatePropagation();})
+	$('#icon_0,#icon_1,#icon_2,#icon_3,#icon_4').click(function(event){
+	    imag=$(event.target).attr('src');
+		$('#drop img').attr('src',imag);
+		$('#icon_nr').attr('value',imag);
+	})
+	$('#drop').show(function(){imgpos=0;update();})
+	$(document).ready(function(){
+        new AjaxUpload('icon-upload', {
+                        action: '/upload.cgi',
+                        name: 'icon',
+                        onComplete : function(file,response){
+                        	response=response.replace(/\D/g,'');
+                        	alert(response)
+                        	imglst.push(response);
+                                $('#drop img').attr('src','/mylyn/attachment.cgi?id='+response);
+                            update();
+                        }       
+                });
+    });      	
     {script}
     </script>
  </body>

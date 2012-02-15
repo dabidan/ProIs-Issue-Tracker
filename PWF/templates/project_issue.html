@@ -15,6 +15,13 @@
 
     <!-- Le styles -->
     <link href="/css/bootstrap.css" rel="stylesheet">
+
+	<style>
+	.number { width:20px; border-right: none;}
+	.info { width:auto; border-left: none;}
+	.subinfo { font-size: 11px; color: #333333}
+	</style>
+
 </head>
 <body>
 
@@ -35,28 +42,16 @@
 <div class="container">
 	<ul class="nav nav-tabs">
 		<li><a href="/projects/{project_id}/">Summary</a></li>
-		<li><a href="/projects/{project_id}/issues.html">Issues</a></li>
-		<li class="active"><a href="/projects/{project_id}/newissue.html">New Issue</a></li>
+		<li class="active"><a href="/projects/{project_id}/issues.html">Issues</a></li>
+		<li><a href="/projects/{project_id}/newissue.html">New Issue</a></li>
 		<li><a href="/projects/{project_id}/browse.html">Code</a></li>
 	</ul>
   <div class="row">
-    <div class="span9">
-      <form class="form-horizontal" id="login_form" method="post" action"/projects/{project_id}/newissue.html">
-        <fieldset>
-          <legend>New Issue</legend>
-		  {message}
+  	<div class="span12"><h1>Issue #{iid}</h1>
+  	
           <div class="control-group">
             <label class="control-label" for="title">Title</label>
-            <div class="controls input-prepend">
-              <span class="add-on"><i class="icon-star"></i></span>
-              <input class="input-xlarge" name="title" id="title" type="text" value="{title}">
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="comment">Comment</label>
-            <div class="controls input-prepend">
-              <span class="add-on"><i class="icon-pencil"></i></span>
-              <textarea class="input-xxlarge" name="comment" id="comment" rows="13">{comment}</textarea>
+            <div class="controls input-prepend">{title}
             </div>
           </div>
 	      <div class="control-group">
@@ -66,10 +61,10 @@
 	            <div class="controls input-prepend">
 	              <span class="add-on"><i class="icon-forward"></i></span>
 				<select class="span2" name="priority">
-                <option>critical</option>
-                <option>high</option>
-                <option selected="selected">medium</option>
-                <option>low</option>
+                <option {s_critical}>critical</option>
+                <option {s_high}>high</option>
+                <option {s_medium}>medium</option>
+                <option {s_low}>low</option>
               </select>
 	            </div>
 	          </div>
@@ -80,25 +75,27 @@
 	            <div class="controls input-prepend">
 	              <span class="add-on"><i class="icon-warning-sign"></i></span>
 				<select class="span2" name="severity">
-                <option>fatal</option>
-                <option selected="selected">normal</option>
-                <option>minor</option>
-                <option>trivial</option>
-                <option>enhancement</option>
+                <option {s_fatal}>fatal</option>
+                <option {s_normal}>normal</option>
+                <option {s_minor}>minor</option>
+                <option {s_trivial}>trivial</option>
+                <option {s_enhancement}>enhancement</option>
               </select>
 	            </div>
 	          </div>
           </div></div>
-          <div class="form-actions">
-            <button id='sub_btn' type="submit" class="btn btn-primary" name="submit" value="submit">New issue</button>
+          <div class="control-group">
+            <label class="control-label" for="comment">Comment</label>
+            <div class="controls input-prepend">
+              <span class="add-on"><i class="icon-pencil"></i></span>
+              <textarea class="input-xxlarge" name="comment" id="comment" rows="13">{comment}</textarea>
+            </div>
           </div>
-        </fieldset>
-      </form>
-    </div>
-    <div class="span3">
-      <h3>New Issue</h3>
-      <p>...</p>
-    </div>
+          <div class="form-actions">
+            <button id='sub_btn' type="submit" class="btn btn-primary" name="submit" value="submit">Update</button>
+          </div>
+  	
+  	</div>
   </div>
 </div>	
 

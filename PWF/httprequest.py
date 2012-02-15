@@ -158,7 +158,6 @@ class DynamicHTTPRequestHandler(BaseHTTPRequestHandler):
             boundary_start='--'+boundary
             boundary_end=boundary_start+'--'
             qs=self.rfile.read(int(self.headers.getheader('content-length')))
-            print qs
             st=StringIO.StringIO(qs)
             mode=1 # ignore
             header=data=None

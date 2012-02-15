@@ -12,7 +12,7 @@ import base64
 import os
 import re
 import datetime
-from issuedb import issuebase, Configuration, XMLNS_bz, XMLNS_rdf, Session
+from issuedb import issuebase, Configuration, XMLNS_bz, XMLNS_rdf, Session, User
 import database
 from mylyn import init_mylyn
 
@@ -37,14 +37,16 @@ def do_list(request,**kw):
       <h5>%s</h5>
       <p>%s</p>
       </td></tr></table></a>
-      </li>"""%(prj.project_id,prj.project_id,encode_html(prj.name),encode_html(prj.description))
+      </li>"""%(prj.project_id,prj.project_id,encode_html(prj.name),encode_html(prj.description.split('\n')[0]))
     values['list']=list
     return TemplateResponse('templates/list.html',values)
 
 def do_login(request, hint=None, login=None, Bugzilla_login=None, Bugzilla_password=None, realname=None, email=None, **kw):
     values={}
     if hint=='1':
-        values['message']="""<div class="alert">To create a new project you need to login.</div>"""
+        values['message']="""<div class="alert">To create a new project you need to login.</div><input type="hidden" name="goto" value="/newproject.html">"""
+    elif hint=='2':
+        values['message']="""<div class="alert">To submit a new issue you need to login.</div><input type="hidden" name="goto" value="/projects/%s/newissue.html">"""%kw.get('project','')
     if login=='Register':
         try:
             u=issuebase.users.new(login=Bugzilla_login, passwd=User.mkpasswd(Bugzilla_password), name=realname, email=email)
@@ -64,11 +66,11 @@ def do_login(request, hint=None, login=None, Bugzilla_login=None, Bugzilla_passw
     if login=='login':
         try:
             session=Session(request)
-            raise RedirectLocation('/index.html')
+            raise RedirectLocation(kw.get('goto','/index.html'))
         except (KeyError, AssertionError), e:
             print e
             pass
-        values['message']="""<div class="alert alert-error">Invalid login or password!</div>"""
+        values['message']="""<div class="alert alert-error">Invalid login or password!</div><input type="hidden" name="goto" value="%s">"""%kw.get('goto','/index.html')
         values['Bugzilla_login']=Bugzilla_login
     return TemplateResponse('templates/login.html',values)
 
@@ -103,14 +105,34 @@ def do_newproject(request, create=None, **kw):
                 prj.project_id=kw['pid']
                 prj.name=kw['name']
                 prj.description=kw['descr']
-                if kw['icon'][2]:
-                    prj.icon=buffer(kw['icon'])
+                print re.sub('[^0-9]*','',kw['icon_nr']),kw['icon_nr']
+                prj.icon=re.sub('[^0-9]*','',kw['icon_nr'])
                 prj.commit()
             except Exception, e:
                 print type(e),e
             raise RedirectLocation('/index.html')
         values['script']=script
+    values['imglist']=','.join([str(att.aid) for att in issuebase.attachments.query_iter(issue_id=-1)])
     return TemplateResponse('templates/newproject.html',values)
+
+def do_upload(request, **kw):
+    session=Session.get_session(request)
+    if session is None: 
+        raise RedirectLocation('/login.html')
+    print kw['icon'][:3],len(kw['icon'][3])
+    if kw['icon'][3]:
+        att=issuebase.attachments.new()
+        att.issue_id=-1
+        att.creator_id=session.user.uid if session else None
+        att.creation_date=str(datetime.datetime.now()).split('.')[0]
+        att.modifier_id=session.user.uid if session else None
+        att.modification_date=str(datetime.datetime.now()).split('.')[0]
+        att.mimetype=kw.get('contenttypeentry',kw.get('icon')[1])
+        att.filename=kw.get('icon')[0]
+        att.data=buffer(kw.get('icon')[3])
+        att.commit()
+        print att._rowid
+        return MimeResponse(str(att._rowid),'text/plain')
 
 def do_project_summary(request,**kw):
     session=Session.get_session(request)
@@ -122,7 +144,8 @@ def do_project_summary(request,**kw):
     prj=issuebase.projects.query_one(project_id=pid)
     values['project_id']=prj.project_id
     values['project_name']=prj.name
-    values['project_description']=prj.description
+    dd=prj.description.split('\n')
+    values['project_description']='<p><b>%s</b></p><p>%s</p>'%(encode_html(dd[0]),'</p><p>'.join(map(encode_html,dd[1:])))
     return TemplateResponse('templates/project_summary.html',values)
 
 def do_project_issues(request,**kw):
@@ -145,17 +168,19 @@ def do_project_issues(request,**kw):
         shorttitle=re.sub('[^A-Za-z0-9\s/]','',issue.title)
         shorttitle=re.sub('\s+','_',shorttitle)
         ilist+="""<tr><td class="number">#%i</td><td class="info">
-        <div><b><a href="/issues/%i/%s/">%s</a></b>
+        <div><b><a href="/issues/%i/%s">%s</a></b>%s
         <p class="subinfo">by %s at %s</p>
-        </td></tr>"""%(issue.iid,issue.iid,shorttitle,issue.title,creator,issue.creation_date)    
+        </td></tr>"""%(issue.iid,issue.iid,shorttitle,issue.title,
+            "<span class='pull-right label label-warning'>new</span>" if issue.bug_status=="unconfirmed" else "",
+            creator,issue.creation_date)    
     values['issues']=ilist
     return TemplateResponse('templates/project_issues.html',values)
 
 def do_project_newissue(request,submit=None, **kw):
+    pid=request.normpath.split('/')[2]
     session=Session.get_session(request)
     if session is None: 
-        raise RedirectLocation('/login.html?hint=1')
-    pid=request.normpath.split('/')[2]
+        raise RedirectLocation('/login.html?hint=2&project=%s'%pid)
     prj=issuebase.projects.query_one(project_id=pid)
     values={'user': '%s <a href="/logout.html">(logout)</a>'%encode_html(session.user.name)}
     values['project_id']=prj.project_id
@@ -179,7 +204,9 @@ def do_project_newissue(request,submit=None, **kw):
                 iss.project_id=prj.pid
                 iss.title=kw['title']
                 iss.bug_status="unconfirmed"
-                iss.assignee_id=None
+                iss.assignee_id=prj.creator_id
+                iss.bug_severity=kw.get('severity','normal')
+                iss.priority=kw.get('priority','medium')
                 iss.commit()
                 if kw['comment']:
                     cmt=issuebase.comments.new()
@@ -199,7 +226,48 @@ def do_project_icon(request,**kw):
     pid=request.normpath.split('/')[2]
     print pid
     prj=issuebase.projects.query_one(project_id=pid)
-    return MimeResponse(str(prj.icon),'image/jpeg')
+    att=issuebase.attachments[prj.icon] if prj.icon else None
+    if att:
+        return MimeResponse(str(att.data),att.mimetype)
+    else:
+        raise RedirectLocation('/default2.png')
+
+def do_project_browse(request,**kw):
+    pid=request.normpath.split('/')[2]
+    session=Session.get_session(request)
+    if session is None: 
+        raise RedirectLocation('/login.html?hint=2&project=%s'%pid)
+    prj=issuebase.projects.query_one(project_id=pid)
+    values={'user': '%s <a href="/logout.html">(logout)</a>'%encode_html(session.user.name)}
+    values['project_id']=prj.project_id
+    values['project_name']=prj.name
+    values['project_description']=prj.description
+    values['title']=kw.get('title','')
+    values['comment']=kw.get('comment','')
+    return TemplateResponse('templates/project_browse.html',values)
+
+def do_issue(request,**kw):
+    iid=request.normpath.split('/')[2]
+    session=Session.get_session(request)
+    if session:
+        values={'user': '%s <a href="/logout.html">(logout)</a>'%encode_html(session.user.name)}
+    else:
+        values={'user': 'anonymous <a href="/login.html">(login)</a>'}
+    iss=issuebase.issues[int(iid)]
+    prj=issuebase.projects[iss.project_id]
+    values['project_id']=prj.project_id
+    values['project_name']=prj.name
+    values['project_description']=prj.description
+    values['iid']=iid
+    values['title']=iss.title
+    values['s_'+(iss.bug_severity or 'normal')]='selected="selected"'
+    values['s_'+(iss.priority or 'medium')]='selected="selected"'
+    return TemplateResponse('templates/project_issue.html',values)
+
+def do_logout(request,**kw):
+    request.set_cookies['Bugzilla_login']=''
+    request.set_cookies['Bugzilla_logincookie']=''
+    raise RedirectLocation('/index.html')
 
 
 def main():
@@ -208,13 +276,17 @@ def main():
     
     server.add_script('/(index\.html)?',do_list)
     server.add_script('/login\.html',do_login)
+    server.add_script('/logout\.html',do_logout)
     server.add_script('/newproject\.html',do_newproject)
+    server.add_script('/upload\.cgi',do_upload)
 
     server.add_script('/projects/[^/]+(/|/index\.html)?',do_project_summary)
     server.add_script('/projects/[^/]+/issues.html',do_project_issues)
     server.add_script('/projects/[^/]+/newissue.html',do_project_newissue)
+    server.add_script('/projects/[^/]+/browse.html',do_project_browse)
     server.add_script('/projects/[^/]+/icon.jpg',do_project_icon)
     
+    server.add_script('/issues/.*',do_issue)
     
     server.add_script('/.*',httprequest.FileHandler('htdocs'))
     
