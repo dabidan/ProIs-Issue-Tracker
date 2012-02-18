@@ -216,6 +216,11 @@ def do_project_newissue(request,submit=None, **kw):
                     cmt.creation_date=str(datetime.datetime.now()).split('.')[0]
                     cmt.text=kw['comment']
                     cmt.commit()
+                if kw.get('notify')=='notify':
+                    no=issuebase.notify.new()
+                    no.issue_id=iss._rowid
+                    no.user_id=session.user.uid
+                    no.commit()
             except Exception, e:
                 print type(e),e
             raise RedirectLocation('/projects/%s/issues.html'%prj.project_id)
@@ -253,16 +258,68 @@ def do_issue(request,**kw):
         values={'user': '%s <a href="/logout.html">(logout)</a>'%encode_html(session.user.name)}
     else:
         values={'user': 'anonymous <a href="/login.html">(login)</a>'}
+    print kw
     iss=issuebase.issues[int(iid)]
+    if kw.get('submit')=='submit' and session:
+        iss.modification_date=str(datetime.datetime.now()).split('.')[0]
+        ass=issuebase.users.query_one(login=kw.get('assigned_to'))
+        if ass is not None:
+            iss.assignee_id=ass.uid
+        if kw.get('title'):
+            iss.title = kw['title']
+        for elem in ('bug_status','resolution','priority','bug_severity','bug_file_loc','status_whiteboard'):
+            if elem in kw:
+                setattr(iss,elem,kw[elem])
+        iss.commit()
+        
+        if kw.get('new_comment','').strip():
+            cmt=issuebase.comments.new()
+            cmt.issue_id=iss._rowid
+            cmt.is_private=0
+            cmt.creator_id=session.user.uid if session else None
+            cmt.creation_date=str(datetime.datetime.now()).split('.')[0]
+            cmt.text=kw['new_comment']
+            cmt.commit()
+            pass
+        no=issuebase.notify.query_one(issue_id=iss._rowid, user_id=session.user.uid)
+        print no
+        if kw.get('notify')=='notify':
+            if no is None:
+                no=issuebase.notify.new()
+                no.issue_id=iss._rowid
+                no.user_id=session.user.uid
+                no.commit()
+        elif no:
+            no.delete()
+    
     prj=issuebase.projects[iss.project_id]
     values['project_id']=prj.project_id
-    values['project_name']=prj.name
-    values['project_description']=prj.description
+    values['project_name']=encode_html(prj.name)
     values['iid']=iid
+    values['creator_name']=issuebase.users[iss.creator_id].name
+    values['creation_date']=iss.creation_date
     values['title']=iss.title
+    print iss.assignee_id
+    values['assigned_to']=issuebase.users[iss.assignee_id].name if iss.assignee_id else 'unassigned'
     values['s_'+(iss.bug_severity or 'normal')]='selected="selected"'
     values['s_'+(iss.priority or 'medium')]='selected="selected"'
-    return TemplateResponse('templates/project_issue.html',values)
+    values['s_'+(re.sub('[^a-z]','',iss.bug_status or 'unconfirmed'))]='selected="selected"'
+    values['s_'+(re.sub('[^a-z]','',iss.resolution or 'none'))]='selected="selected"'
+    
+    comments=''
+    for cmm in issuebase.comments.query_iter(issue_id=iid):
+        try: cc=encode_html(issuebase.users[cmm.creator_id].name)
+        except: cc='unknown'
+        comments+="<div><h5>by %s at %s</h5><p><pre>%s</pre></p></div>"%(
+            cc,
+            cmm.creation_date,
+            encode_html(cmm.text),
+        )
+    values['comments']=comments or '<span class="help-block">none</span>'
+    if session:
+        no=issuebase.notify.query_one(issue_id=iss._rowid, user_id=session.user.uid)
+        if no: values['notify']='checked="checked"'
+    return TemplateResponse('templates/project_issue.html' if session else 'templates/project_issue_disabled.html',values)
 
 def do_logout(request,**kw):
     request.set_cookies['Bugzilla_login']=''

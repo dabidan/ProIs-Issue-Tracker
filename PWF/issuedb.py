@@ -236,6 +236,11 @@ class Attachment(DBRecord):
             ET.SubElement(result,'data',encoding="base64").text=base64.b64encode(str(self.data))
         return result
 
+class Notify(DBRecord):
+    nid=dbfield('nid','INTEGER','PRIMARY KEY AUTOINCREMENT')
+    issue_id=dbfield('issue_id','INTEGER')
+    user_id=dbfield('user_id','INTEGER')
+
 class Project(DBRecord):
     pid=dbfield('pid','INTEGER','PRIMARY KEY AUTOINCREMENT')
     project_id=dbfield('project_id','TEXT','UNIQUE')
@@ -286,6 +291,7 @@ class IssueBase(Database):
     issues=dbtable('Issues',Issue)
     comments=dbtable('Comments',Comment)
     attachments=dbtable('Attachments',Attachment)
+    notify=dbtable('Notify',Notify)
     
 
 issuebase=IssueBase('test.db')

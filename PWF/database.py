@@ -51,6 +51,13 @@ class DBRecord(object):
             self._db.commit()
             c.close()
             
+    def delete(self):
+        if self._rowid is None: return
+        c= self._db.cursor()
+        c.execute("delete from ? where _rowid_=?",(self._table_name,self._rowid))
+        self._rowid=None
+        self._db.commit()
+            
     def get_field(self, fieldname):
         c = self._db.cursor()
         c.execute("select %s from %s where _rowid_=%i"%(fieldname,self._table_name,self._rowid))

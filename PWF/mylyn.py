@@ -46,10 +46,10 @@ def do_mylyn_buglist(request, **kw):
         cvars=[int(x) for x in (','.join(kw['bug_id'])).split(',') if x]
         cond=['bug_id in (%s)'%(','.join('?'*len(cvars)))]
         if 'chfieldfrom' in kw:
-            cvars.append(re.sub(r'[+-]\d+$','',kw['chfieldfrom']))
+            cvars.append(re.sub(r'[+-]\d+$','',kw['chfieldfrom'][-1]))
             cond.append('datetime(modification_date)>=datetime(?)')
         if 'chfieldto' in kw:
-            cvars.append(re.sub(r'[+-]\d+$','',kw['chfieldto']))
+            cvars.append(re.sub(r'[+-]\d+$','',kw['chfieldto'][-1]))
             cond.append('datetime(modification_date)<=datetime(?)')
         for bug in issuebase.select_sql(' and '.join(cond),cvars):
             ET.SubElement(seq,XMLNS_rdf+'li').append(bug.to_short_xml(host))
@@ -102,7 +102,7 @@ def make_search(kw):
             elif m.group(1) not in ('',type):
                 print "Email option unknown",key,value
         elif key[:6]=='negate':
-            m=re.match('^negate(\d+)$')
+            m=re.match('^negate(\d+)$',key)
             negate[int(m.group(1))]=int(value[-1])
         elif key in ('ctype','order'):
             pass

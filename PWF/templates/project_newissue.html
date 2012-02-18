@@ -52,19 +52,12 @@
               <input class="input-xlarge" name="title" id="title" type="text" value="{title}">
             </div>
           </div>
-          <div class="control-group">
-            <label class="control-label" for="comment">Comment</label>
-            <div class="controls input-prepend">
-              <span class="add-on"><i class="icon-pencil"></i></span>
-              <textarea class="input-xxlarge" name="comment" id="comment" rows="13">{comment}</textarea>
-            </div>
-          </div>
 	      <div class="control-group">
           <div class="pull-right">
 	          <div class="control-group">
-	            <label class="control-label" for="comment">Priority</label>
+	            <label class="control-label" for="priority">Priority</label>
 	            <div class="controls input-prepend">
-	              <span class="add-on"><i class="icon-forward"></i></span>
+	              <span class="add-on"><i class="icon-time"></i></span>
 				<select class="span2" name="priority">
                 <option>critical</option>
                 <option>high</option>
@@ -76,7 +69,7 @@
           </div>
           <div class="pull-left">
 	          <div class="control-group">
-	            <label class="control-label" for="comment">Severity</label>
+	            <label class="control-label" for="severity">Severity</label>
 	            <div class="controls input-prepend">
 	              <span class="add-on"><i class="icon-warning-sign"></i></span>
 				<select class="span2" name="severity">
@@ -89,6 +82,21 @@
 	            </div>
 	          </div>
           </div></div>
+          <div class="control-group">
+            <label class="control-label" for="comment">Comment</label>
+            <div class="controls input-prepend">
+              <span class="add-on"><i class="icon-pencil"></i></span>
+              <textarea class="input-xxlarge" name="comment" id="comment" rows="13">{comment}</textarea>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls input-prepend">
+				<label class="checkbox">
+                <input id="notify" value="notify" type="checkbox">
+                notify me on chances by email
+              	</label>
+            </div>
+          </div>
           <div class="form-actions">
             <button id='sub_btn' type="submit" class="btn btn-primary" name="submit" value="submit">New issue</button>
           </div>
