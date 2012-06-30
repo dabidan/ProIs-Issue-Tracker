@@ -224,7 +224,7 @@ if __name__=='__main__':
     #uu.passwd='geheim'
     #uu.commit()
     uu=ib.users.query_one(login='abc2')
-    print uu.uid,uu.login,uu.passwd, uu.email
+    #print uu.uid,uu.login,uu.passwd, uu.email
     uu=ib.users.new(login='abc',passwd='xxz',email='here@nowhere.com')
     print uu.login
     uu.commit()
